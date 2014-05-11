@@ -2,15 +2,16 @@
 #include "CoalTypeA.h"
 #include "CoalTypeB.h"
 #include "CommonIncludes.h"
+
 class Miner
 {
 public:
-	std::string name;
+    QString name;
 	int experience;
 	double morale;
 public:
 	Miner();
-	Miner(std::string name);
+    Miner(QString name);
 	void MineCoal(CoalTypeA coal);
 	void MineCoal(CoalTypeB coal);
 	double GetEfficiency(CoalTypeA *coal);

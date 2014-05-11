@@ -4,6 +4,20 @@
 
 Mine::Mine()
 {
+    this->name="moja kopalnia";
+    this->salary=1000;
+    this->budget=100000;
+    this->storage= new Storehouse();
+    this->extractCoalA = new CoalTypeA();
+    this->extractCoalB = new CoalTypeB();
+    this->sellCoalA = new CoalTypeA();
+    this->sellCoalB = new CoalTypeB();
+
+    for(int i=0; i<60;i++)
+    {
+       this->miners.push_back(new Miner());
+    }
+
 }
 
 

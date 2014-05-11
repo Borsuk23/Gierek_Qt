@@ -10,13 +10,17 @@ Market::Market(int _difficulty)
 {
     for(int i=0; i<(5-_difficulty)*20; i++)
     {
-        this->clients.push_back(new Client());
+        this->clients.push_back(new Client(_difficulty));
     }
 }
 
 void Market::AddOrder(Order *newOrder)
 {
-    orderList.push_back(newOrder);
+    this->orderList.push_back(newOrder);
+}
+void Market::AddOffer(Order *newOffer)
+{
+    this->offerList.push_back(newOffer);
 }
 
 Order Market::AccomplishTransaction(Order *playerOffer)

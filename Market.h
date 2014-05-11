@@ -16,6 +16,7 @@ public:
     Market();
     Market(int _difficulty);
 	void AddOrder(Order *newOrder);
+    void AddOffer(Order *newOffer);
 	Order AccomplishTransaction(Order *offer);
 };
 

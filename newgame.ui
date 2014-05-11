@@ -41,7 +41,7 @@
    <property name="title">
     <string>Difficulty</string>
    </property>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -52,21 +52,24 @@
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QRadioButton" name="radioButton">
+      <widget class="QRadioButton" name="easyRadioButton">
        <property name="text">
         <string>easy</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QRadioButton" name="radioButton_2">
+      <widget class="QRadioButton" name="mediumRadioButton">
        <property name="text">
         <string>medium</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QRadioButton" name="radioButton_3">
+      <widget class="QRadioButton" name="hardRadioButton">
        <property name="text">
         <string>hard</string>
        </property>
@@ -96,7 +99,7 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>21</x>
@@ -114,11 +117,52 @@
      </widget>
     </item>
     <item>
-     <widget class="QComboBox" name="comboBox_2"/>
+     <widget class="QComboBox" name="lenghtComboBox">
+      <item>
+       <property name="text">
+        <string>12</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>24</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>36</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>48</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>72</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>96</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>120</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>144</string>
+       </property>
+      </item>
+     </widget>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -136,29 +180,29 @@
      </widget>
     </item>
     <item>
-     <widget class="QComboBox" name="comboBox"/>
+     <widget class="QComboBox" name="playerComboBox">
+      <item>
+       <property name="text">
+        <string>&lt;&lt;Choose player&gt;&gt;</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Sony</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>&lt;&lt;Create new player&gt;&gt;</string>
+       </property>
+      </item>
+     </widget>
     </item>
    </layout>
   </widget>
  </widget>
  <resources/>
  <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>NewGame</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>157</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>

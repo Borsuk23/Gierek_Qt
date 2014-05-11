@@ -3,6 +3,8 @@
 #include "Player.h"
 #include "AI.h"
 #include <qvector.h>
+
+
 class Game
 {
 private:
@@ -14,14 +16,18 @@ private:
     Market *market;
     Player *player;
     QVector<AI*> mines;
+
 public:
     Game();
     Game(int _difficulty, int _lenght, QString _name);
-    void PlayTurn();
+    bool PlayTurn(double _salary);
     void EndGame();
     int GetGameID();
+    int GetDate();
+    double Completed();
     Player* GetPlayer();
     Market* GetMarket();
+
 
 };
 

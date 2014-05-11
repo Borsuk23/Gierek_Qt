@@ -3,28 +3,31 @@
 
 Miner::Miner()
 {
+    this->name = "Janusz";
+    this->experience = rand() % 100;
+    this->morale = 100;
 }
 
-Miner::Miner(std::string name)
+Miner::Miner(QString _name)
 {
-	this->name = name;
+    this->name = _name;
 	this->experience = rand() % 100;
 	this->morale = 100;
 }
 
-void Miner::MineCoal(CoalTypeA coal)
+void Miner::MineCoal(CoalTypeA _coal)
 {
 	if (!Strike())
 	{
-        //coal.amount += (1 + experience * 0, 02) * 100;
+        //_coal.amount += (1 + experience * 0, 02) * 100;
 	}
 }
 
-void Miner::MineCoal(CoalTypeB coal)
+void Miner::MineCoal(CoalTypeB _coal)
 {
 	if (!Strike())
 	{
-        //coal.amount += (1 + experience * 0, 03) * 160;
+        //_coal.amount += (1 + experience * 0, 03) * 160;
 	}
 }
 

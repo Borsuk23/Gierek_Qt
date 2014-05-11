@@ -30,7 +30,8 @@ SOURCES += main.cpp\
     Coal.cpp \
     CoalTypeA.cpp \
     CoalTypeB.cpp \
-    newgame.cpp
+    newgame.cpp \
+    newplayer.cpp
 
 HEADERS  += mainwindow.h \
     AI.h \
@@ -50,7 +51,15 @@ HEADERS  += mainwindow.h \
     CoalTypeA.h \
     CoalTypeB.h \
     CommonIncludes.h \
-    newgame.h
+    newgame.h \
+    newplayer.h
 
 FORMS    += mainwindow.ui \
-    newgame.ui
+    newgame.ui \
+    newplayer.ui
+
+RESOURCES += \
+    resources.qrc
+
+OTHER_FILES += \
+    1044.jpg

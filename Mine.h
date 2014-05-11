@@ -6,9 +6,9 @@ class Mine
 {
 public:
 	std::string name;
-	double salary;
+    int salary;
 	double budget;
-   // QVector<Miner> miners;
+    QList<Miner*> miners;
 	Storehouse *storage;
 
     CoalTypeA *extractCoalA;

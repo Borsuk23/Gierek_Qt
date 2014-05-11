@@ -16,6 +16,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     explicit MainWindow(QWidget *parent = 0, Game *_game = 0);
     ~MainWindow();
+    void refreshContent();
 
 private slots:
     void on_actionNew_game_triggered();
@@ -25,7 +26,10 @@ private slots:
 
     void on_actionAbout_triggered();
 
+    void on_playTurnButton_clicked();
+
 private:
+
     Game *game=NULL;
     Ui::MainWindow *ui;
 };

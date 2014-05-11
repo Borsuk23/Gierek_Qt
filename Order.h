@@ -11,6 +11,10 @@ private:
 public:
 	Order();
 	Order(CoalTypeA *coalA, CoalTypeB *coalB);
+    CoalTypeA* GetCoalA();
+    CoalTypeB* GetCoalB();
+    void SetCoalA(CoalTypeA *_coal);
+    void SetCoalB(CoalTypeB *_coal);
 
 };
 

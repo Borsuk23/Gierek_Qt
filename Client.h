@@ -6,12 +6,13 @@
 
 class Client
 {
-public:
+protected:
     QString name;
     Order *avarageOrder;
 public:
     Client();
-    Order MakeOrder();
+    Client(int _difficulty);
+    Order* MakeOrder();
     QString GetName();
 };
 

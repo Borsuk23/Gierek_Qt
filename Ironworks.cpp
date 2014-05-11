@@ -6,7 +6,7 @@
 
 Ironworks::Ironworks()
 {
-	name = "Huta";
+    this->name = "Huta";
     CoalTypeA *typeA = new CoalTypeA((1+ (std::rand() % 30 - 15) / 100) * 10000, 600);
     CoalTypeB *typeB = new CoalTypeB((1 + (std::rand() % 30 - 15) / 100) * 10000, 600);
 	avarageOrder = new Order(typeA, typeB);

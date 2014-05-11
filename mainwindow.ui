@@ -14,177 +14,184 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QTabWidget" name="manageSections">
+   <widget class="QStackedWidget" name="windowPages">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>10</y>
+      <y>0</y>
       <width>641</width>
-      <height>341</height>
+      <height>441</height>
      </rect>
     </property>
-    <property name="currentIndex">
-     <number>0</number>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+      <horstretch>1</horstretch>
+      <verstretch>1</verstretch>
+     </sizepolicy>
     </property>
-    <widget class="QWidget" name="Mine">
-     <attribute name="title">
-      <string>Mine</string>
-     </attribute>
-     <widget class="QGroupBox" name="groupBox">
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <widget class="QWidget" name="blankPage">
+     <widget class="QLabel" name="welcomeLabel">
       <property name="geometry">
        <rect>
-        <x>390</x>
-        <y>10</y>
+        <x>190</x>
+        <y>120</y>
         <width>241</width>
-        <height>291</height>
+        <height>191</height>
        </rect>
       </property>
-      <property name="title">
-       <string>Storehouse</string>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/Other files/1044.jpg/1044.jpg&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
-      <widget class="QWidget" name="">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>210</y>
-         <width>191</width>
-         <height>61</height>
-        </rect>
-       </property>
-       <layout class="QGridLayout" name="gridLayout_4">
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_30">
-          <property name="text">
-           <string>Upgrade cost:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLabel" name="label_31">
-          <property name="text">
-           <string>0</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0" colspan="2">
-         <widget class="QPushButton" name="pushButton_4">
-          <property name="text">
-           <string>Upgrade storehouse</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>30</y>
-         <width>191</width>
-         <height>151</height>
-        </rect>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_6" stretch="11,20,10,2,20,10,2,20">
-        <item>
-         <widget class="QLabel" name="label_13">
-          <property name="text">
-           <string>Coal stored:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
-          <item>
-           <widget class="QLabel" name="label_14">
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>60</y>
+        <width>261</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Coal Mine Simulator</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="gamePage">
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>370</y>
+        <width>141</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QLabel" name="budgetLabel">
+         <property name="text">
+          <string>Budget:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="budgetDisplayLabel">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="scoreLabel">
+         <property name="text">
+          <string>Score:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="scoreDisplayLabel">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>350</y>
+        <width>201</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QPushButton" name="playTurnButton">
+           <property name="text">
+            <string>Play turn!</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLCDNumber" name="dateDisplay"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QProgressBar" name="completeBar">
+         <property name="value">
+          <number>0</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QTabWidget" name="manageSections">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>641</width>
+        <height>341</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="Mine">
+       <attribute name="title">
+        <string>Mine</string>
+       </attribute>
+       <widget class="QGroupBox" name="groupBox">
+        <property name="geometry">
+         <rect>
+          <x>390</x>
+          <y>10</y>
+          <width>241</width>
+          <height>291</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Storehouse</string>
+        </property>
+        <widget class="QWidget" name="layoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>210</y>
+           <width>191</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_30">
             <property name="text">
-             <string>Type A</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QProgressBar" name="progressBar">
-            <property name="value">
-             <number>24</number>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_34">
-          <property name="text">
-           <string>0</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="Line" name="line_5">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
-          <item>
-           <widget class="QLabel" name="label_15">
-            <property name="text">
-             <string>Type B</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QProgressBar" name="progressBar_2">
-            <property name="value">
-             <number>24</number>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_35">
-          <property name="text">
-           <string>0</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="Line" name="line_4">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_5">
-          <item>
-           <widget class="QLabel" name="label_16">
-            <property name="text">
-             <string>Store cost:</string>
+             <string>Upgrade cost:</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QLabel" name="label_17">
+          <item row="0" column="1">
+           <widget class="QLabel" name="label_31">
             <property name="text">
              <string>0</string>
             </property>
@@ -193,73 +200,29 @@
             </property>
            </widget>
           </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-     <widget class="QGroupBox" name="groupBox_2">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>371</width>
-        <height>101</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>Coal Extraction</string>
-      </property>
-      <widget class="QWidget" name="">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>20</y>
-         <width>321</width>
-         <height>71</height>
-        </rect>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_6">
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_7">
-          <item>
-           <widget class="QLabel" name="label_6">
+          <item row="1" column="0" colspan="2">
+           <widget class="QPushButton" name="pushButton_4">
             <property name="text">
-             <string>Type A:</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="coalAExtractionAmountLabel">
-            <property name="text">
-             <string>TypeA_amount</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
+             <string>Upgrade storehouse</string>
             </property>
            </widget>
           </item>
          </layout>
-        </item>
-        <item>
-         <widget class="QSlider" name="horizontalSlider">
-          <property name="maximum">
-           <number>100</number>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_8">
+        </widget>
+        <widget class="QWidget" name="layoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>30</y>
+           <width>191</width>
+           <height>151</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_6" stretch="11,20,10,2,20,10,2,20">
           <item>
-           <widget class="QLabel" name="label_7">
+           <widget class="QLabel" name="label_13">
             <property name="text">
-             <string>Type B:</string>
+             <string>Coal stored:</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -267,555 +230,635 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="coalBExtractionAmountLabel">
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QLabel" name="label_14">
+              <property name="text">
+               <string>Type A</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QProgressBar" name="progressBar">
+              <property name="value">
+               <number>24</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_34">
             <property name="text">
-             <string>TypeB_amount</string>
+             <string>0</string>
             </property>
             <property name="alignment">
-             <set>Qt::AlignCenter</set>
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="Line" name="line_5">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <widget class="QLabel" name="label_15">
+              <property name="text">
+               <string>Type B</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QProgressBar" name="progressBar_2">
+              <property name="value">
+               <number>24</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_35">
+            <property name="text">
+             <string>0</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="Line" name="line_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <item>
+             <widget class="QLabel" name="label_16">
+              <property name="text">
+               <string>Store cost:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_17">
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>371</width>
+          <height>101</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Coal Extraction</string>
+        </property>
+        <widget class="QWidget" name="layoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>20</y>
+           <width>321</width>
+           <height>71</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <item>
+             <widget class="QLabel" name="label_6">
+              <property name="text">
+               <string>Type A:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="coalAExtractionAmountLabel">
+              <property name="text">
+               <string>TypeA_amount</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QSlider" name="horizontalSlider">
+            <property name="maximum">
+             <number>100</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_8">
+            <item>
+             <widget class="QLabel" name="label_7">
+              <property name="text">
+               <string>Type B:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="coalBExtractionAmountLabel">
+              <property name="text">
+               <string>TypeB_amount</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>110</y>
+          <width>371</width>
+          <height>191</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Sale</string>
+        </property>
+        <widget class="QWidget" name="layoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>120</y>
+           <width>291</width>
+           <height>24</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="20,60,20">
+          <item>
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>Type B</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSlider" name="horizontalSlider_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_33">
+            <property name="text">
+             <string>TextLabel</string>
             </property>
            </widget>
           </item>
          </layout>
-        </item>
-       </layout>
+        </widget>
+        <widget class="QWidget" name="layoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>20</y>
+           <width>291</width>
+           <height>24</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="20,60,20">
+          <item>
+           <widget class="QLabel" name="label_10">
+            <property name="text">
+             <string>Type A</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSlider" name="horizontalSlider_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_32">
+            <property name="text">
+             <string>TextLabel</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="layoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>60</y>
+           <width>164</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="40,70">
+          <item>
+           <widget class="QLabel" name="label_8">
+            <property name="text">
+             <string>Price</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit"/>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="layoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>160</y>
+           <width>164</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="40,60">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Price</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_2"/>
+          </item>
+         </layout>
+        </widget>
+       </widget>
       </widget>
-     </widget>
-     <widget class="QGroupBox" name="groupBox_3">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>110</y>
-        <width>371</width>
-        <height>191</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>Sale</string>
-      </property>
-      <widget class="QWidget" name="">
-       <property name="geometry">
-        <rect>
-         <x>40</x>
-         <y>120</y>
-         <width>291</width>
-         <height>24</height>
-        </rect>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="20,60,20">
-        <item>
-         <widget class="QLabel" name="label_11">
-          <property name="text">
-           <string>Type B</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSlider" name="horizontalSlider_2">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_33">
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="">
-       <property name="geometry">
-        <rect>
-         <x>40</x>
-         <y>20</y>
-         <width>291</width>
-         <height>24</height>
-        </rect>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="20,60,20">
-        <item>
-         <widget class="QLabel" name="label_10">
-          <property name="text">
-           <string>Type A</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSlider" name="horizontalSlider_3">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_32">
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="">
-       <property name="geometry">
-        <rect>
-         <x>40</x>
-         <y>60</y>
-         <width>164</width>
-         <height>22</height>
-        </rect>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="40,70">
-        <item>
-         <widget class="QLabel" name="label_8">
-          <property name="text">
-           <string>Price</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="">
-       <property name="geometry">
-        <rect>
-         <x>40</x>
-         <y>160</y>
-         <width>164</width>
-         <height>22</height>
-        </rect>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="40,60">
-        <item>
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>Price</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_2"/>
-        </item>
-       </layout>
-      </widget>
-      <zorder>horizontalSlider_2</zorder>
-      <zorder>label_11</zorder>
-      <zorder>label_10</zorder>
-      <zorder>horizontalSlider_3</zorder>
-      <zorder>lineEdit</zorder>
-      <zorder>lineEdit_2</zorder>
-      <zorder>label</zorder>
-      <zorder>label_8</zorder>
-      <zorder>label_32</zorder>
-      <zorder>lineEdit_2</zorder>
-      <zorder>label_33</zorder>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="HR">
-     <attribute name="title">
-      <string>HR</string>
-     </attribute>
-     <widget class="QListView" name="listView">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>311</width>
-        <height>281</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QSlider" name="verticalSlider">
-      <property name="geometry">
-       <rect>
-        <x>570</x>
-        <y>60</y>
-        <width>22</width>
-        <height>160</height>
-       </rect>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-     </widget>
-     <widget class="QWidget" name="">
-      <property name="geometry">
-       <rect>
-        <x>340</x>
-        <y>10</y>
-        <width>88</width>
-        <height>54</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_4">
-       <item>
-        <widget class="QPushButton" name="pushButton">
-         <property name="text">
-          <string>Hire new worker</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_2">
-         <property name="text">
-          <string>Notice worker</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="">
-      <property name="geometry">
-       <rect>
-        <x>341</x>
-        <y>191</y>
-        <width>141</width>
-        <height>101</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_3">
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_24">
-         <property name="text">
-          <string>Number of miners:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="label_25">
-         <property name="text">
-          <string>0</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_26">
-         <property name="text">
-          <string>Current salary:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLabel" name="label_27">
-         <property name="text">
-          <string>0</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="label_28">
-         <property name="text">
-          <string>Average morale:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLabel" name="label_29">
-         <property name="text">
-          <string>0</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="">
-      <property name="geometry">
-       <rect>
-        <x>540</x>
-        <y>240</y>
-        <width>81</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_5">
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <widget class="QWidget" name="HR">
+       <attribute name="title">
+        <string>HR</string>
+       </attribute>
+       <widget class="QListView" name="minerList">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>311</width>
+          <height>281</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QSlider" name="salarySlider">
+        <property name="geometry">
+         <rect>
+          <x>570</x>
+          <y>60</y>
+          <width>22</width>
+          <height>160</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <number>10000</number>
+        </property>
+        <property name="value">
+         <number>0</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>340</x>
+          <y>10</y>
+          <width>88</width>
+          <height>54</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
          <item>
-          <widget class="QLabel" name="label_4">
+          <widget class="QPushButton" name="pushButton">
            <property name="text">
-            <string>Salary:</string>
+            <string>Hire new worker</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_5">
+          <widget class="QPushButton" name="pushButton_2">
+           <property name="text">
+            <string>Notice worker</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>341</x>
+          <y>191</y>
+          <width>141</width>
+          <height>101</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_24">
+           <property name="text">
+            <string>Number of miners:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_25">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_26">
+           <property name="text">
+            <string>Current salary:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="label_27">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_28">
+           <property name="text">
+            <string>Average morale:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="label_29">
            <property name="text">
             <string>0</string>
            </property>
           </widget>
          </item>
         </layout>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_3">
-         <property name="text">
-          <string>Update salary</string>
+       </widget>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>540</x>
+          <y>240</y>
+          <width>81</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_5">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>Salary:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="salaryLabel">
+             <property name="text">
+              <string>0</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_3">
+           <property name="text">
+            <string>Update salary</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <zorder>layoutWidget</zorder>
+       <zorder>layoutWidget</zorder>
+       <zorder>layoutWidget</zorder>
+       <zorder>minerList</zorder>
+       <zorder>salarySlider</zorder>
+      </widget>
+      <widget class="QWidget" name="Market">
+       <attribute name="title">
+        <string>Market</string>
+       </attribute>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>230</y>
+          <width>451</width>
+          <height>81</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout" rowstretch="20,0,0" columnstretch="20,0,0,0,0,0,0">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetFixedSize</enum>
          </property>
-        </widget>
-       </item>
-      </layout>
+         <property name="spacing">
+          <number>6</number>
+         </property>
+         <item row="0" column="2" colspan="2">
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>Avarage price:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="5">
+          <widget class="QLabel" name="label_18">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="5">
+          <widget class="QLabel" name="label_20">
+           <property name="text">
+            <string>Coal sold:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1" rowspan="3">
+          <widget class="Line" name="line_3">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="5">
+          <widget class="QLabel" name="label_12">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="4" rowspan="3">
+          <widget class="Line" name="line">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_22">
+           <property name="text">
+            <string>Coal Type B</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_19">
+           <property name="text">
+            <string>Coal Type A</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="6" rowspan="3">
+          <widget class="Line" name="line_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2" colspan="2">
+          <widget class="QLabel" name="label_21">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2" colspan="2">
+          <widget class="QLabel" name="label_23">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>340</x>
+          <y>10</y>
+          <width>258</width>
+          <height>213</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>Competition</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QListView" name="competitionList"/>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>10</y>
+          <width>258</width>
+          <height>213</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Orders</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QListView" name="ordersList"/>
+         </item>
+        </layout>
+       </widget>
+      </widget>
      </widget>
-     <zorder>listView</zorder>
-     <zorder>pushButton</zorder>
-     <zorder>verticalSlider</zorder>
-     <zorder>pushButton_2</zorder>
-     <zorder>pushButton_3</zorder>
-     <zorder>label_4</zorder>
-     <zorder>label_5</zorder>
-     <zorder>label_24</zorder>
-     <zorder>label_25</zorder>
-     <zorder>label_26</zorder>
-     <zorder>label_27</zorder>
-     <zorder>label_28</zorder>
-     <zorder>label_29</zorder>
-     <zorder>label_4</zorder>
     </widget>
-    <widget class="QWidget" name="Market">
-     <attribute name="title">
-      <string>Market</string>
-     </attribute>
-     <widget class="QWidget" name="">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>230</y>
-        <width>451</width>
-        <height>81</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="gridLayout" rowstretch="20,20,20" columnstretch="20,0,20,0,0,20,0">
-       <property name="sizeConstraint">
-        <enum>QLayout::SetFixedSize</enum>
-       </property>
-       <property name="spacing">
-        <number>6</number>
-       </property>
-       <item row="0" column="2" colspan="2">
-        <widget class="QLabel" name="label_9">
-         <property name="text">
-          <string>Avarage price:</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="5">
-        <widget class="QLabel" name="label_12">
-         <property name="text">
-          <string>0</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="5">
-        <widget class="QLabel" name="label_20">
-         <property name="text">
-          <string>Coal sold:</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1" rowspan="3">
-        <widget class="Line" name="line_3">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="label_22">
-         <property name="text">
-          <string>Coal Type B</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="4" rowspan="3">
-        <widget class="Line" name="line">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="5">
-        <widget class="QLabel" name="label_18">
-         <property name="text">
-          <string>0</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_19">
-         <property name="text">
-          <string>Coal Type A</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="6" rowspan="3">
-        <widget class="Line" name="line_2">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2" colspan="2">
-        <widget class="QLabel" name="label_23">
-         <property name="text">
-          <string>0</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2" colspan="2">
-        <widget class="QLabel" name="label_21">
-         <property name="text">
-          <string>0</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="">
-      <property name="geometry">
-       <rect>
-        <x>340</x>
-        <y>10</y>
-        <width>258</width>
-        <height>213</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
-       <item>
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>Competition</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QListView" name="competitionList"/>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>10</y>
-        <width>258</width>
-        <height>213</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
-       <item>
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>Orders</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QListView" name="ordersList"/>
-       </item>
-      </layout>
-     </widget>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="">
-    <property name="geometry">
-     <rect>
-      <x>420</x>
-      <y>360</y>
-      <width>201</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QPushButton" name="playTurnButton">
-         <property name="text">
-          <string>Play turn!</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLCDNumber" name="dateDisplay"/>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <widget class="QProgressBar" name="turnProgressBar">
-       <property name="value">
-        <number>24</number>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>380</y>
-      <width>141</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout_2">
-     <item row="0" column="0">
-      <widget class="QLabel" name="budgetLabel">
-       <property name="text">
-        <string>Budget:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="budgetDisplayLabel">
-       <property name="text">
-        <string>0</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="scoreLabel">
-       <property name="text">
-        <string>Score:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLabel" name="scoreDisplayLabel">
-       <property name="text">
-        <string>0</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -898,6 +941,22 @@
     <hint type="destinationlabel">
      <x>320</x>
      <y>247</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>salarySlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>salaryLabel</receiver>
+   <slot>setNum(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>582</x>
+     <y>204</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>603</x>
+     <y>315</y>
     </hint>
    </hints>
   </connection>
