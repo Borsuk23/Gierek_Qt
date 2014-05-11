@@ -10,7 +10,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
 }
 
 MainWindow::MainWindow(QWidget *parent, Game *_game) :
@@ -35,15 +34,11 @@ void MainWindow::on_actionNew_game_triggered()
     {
         this->game=popup->game;
         this->refreshContent();
-
     }
     else if (popup->exec()==QDialog::Rejected)
     {
 
     }
-
-
-
 }
 
 void MainWindow::on_actionExit_triggered()
@@ -82,7 +77,7 @@ void MainWindow::refreshContent()
     //update HR tab
 
     //fill miners list
-    QStandardItemModel *model =new QStandardItemModel();
+    QStandardItemModel *model = new QStandardItemModel();
     ui->minerList->setModel(model);
     for(int i=0; i<game->GetPlayer()->GetMine()->miners.size();i++)
     {
@@ -92,7 +87,7 @@ void MainWindow::refreshContent()
             item->setEditable( false );
             model->appendRow( item );
     }
-    delete model;
+
     //update Market tab
 
     //fill opponent mines list
@@ -106,7 +101,6 @@ void MainWindow::refreshContent()
             item->setEditable( false );
             model->appendRow( item );
     }
-    delete model;
 
     //fill orders list
 
