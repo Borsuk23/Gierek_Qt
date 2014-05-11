@@ -1,25 +1,33 @@
-#include "pch.h"
 #include "Market.h"
 
 
 Market::Market()
 {
+
+}
+
+Market::Market(int _difficulty)
+{
+    for(int i=0; i<(5-_difficulty)*20; i++)
+    {
+        this->clients.push_back(new Client());
+    }
 }
 
 void Market::AddOrder(Order *newOrder)
 {
-	orderList.push_back(*newOrder);
+    orderList.push_back(newOrder);
 }
 
 Order Market::AccomplishTransaction(Order *playerOffer)
 {
 	Order *sold = new Order();
-	
+/*
 	//check if there's any coal type A for sell
-	if (playerOffer->coalA != nullptr)
+    if (playerOffer->coalA != NULL)
 	{
-		sold->coalA->price = playerOffer->coalA->price;
-		sold->coalA->amount = 0;
+        sold->coalA->SetPrice(playerOffer->coalA->GetPrice());
+        sold->coalA->SetAmount(0);
 
 		//if any other mine sells for lower price than it's first in row for comming transactions
 		for (Order off : offerList)
@@ -159,5 +167,6 @@ Order Market::AccomplishTransaction(Order *playerOffer)
 			}
 		}
 	}
+    */
 	return *sold;
 }

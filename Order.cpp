@@ -1,10 +1,9 @@
-#include "pch.h"
 #include "Order.h"
 
 Order::Order()
 {
-	this->coalA = nullptr;
-	this->coalB = nullptr;
+    this->coalA = 0;
+    this->coalB = 0;
 }
 Order::Order(CoalTypeA *coalA, CoalTypeB *coalB)
 {

@@ -1,6 +1,7 @@
 #pragma once
 #include "CoalTypeA.h"
 #include "CoalTypeB.h"
+#include "CommonIncludes.h"
 class Miner
 {
 public:

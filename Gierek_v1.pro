@@ -26,7 +26,11 @@ SOURCES += main.cpp\
     Order.cpp \
     Player.cpp \
     PowerStation.cpp \
-    Storehouse.cpp
+    Storehouse.cpp \
+    Coal.cpp \
+    CoalTypeA.cpp \
+    CoalTypeB.cpp \
+    newgame.cpp
 
 HEADERS  += mainwindow.h \
     AI.h \
@@ -41,6 +45,12 @@ HEADERS  += mainwindow.h \
     Order.h \
     Player.h \
     PowerStation.h \
-    Storehouse.h
+    Storehouse.h \
+    Coal.h \
+    CoalTypeA.h \
+    CoalTypeB.h \
+    CommonIncludes.h \
+    newgame.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    newgame.ui

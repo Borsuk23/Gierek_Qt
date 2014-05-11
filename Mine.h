@@ -8,14 +8,14 @@ public:
 	std::string name;
 	double salary;
 	double budget;
-	std::vector<Miner> miners;
+   // QVector<Miner> miners;
 	Storehouse *storage;
 
-	CoalTypeA extractCoalA;
-	CoalTypeB extractCoalB;
+    CoalTypeA *extractCoalA;
+    CoalTypeB *extractCoalB;
 
-	CoalTypeA sellCoalA;
-	CoalTypeB sellCoalB;
+    CoalTypeA *sellCoalA;
+    CoalTypeB *sellCoalB;
 
 public:
 	Mine();

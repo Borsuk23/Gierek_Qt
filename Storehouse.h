@@ -3,7 +3,7 @@
 #include "CoalTypeB.h"
 class Storehouse
 {
-public:
+private:
 	double cost;
 	CoalTypeA *storageA;
 	CoalTypeB *storageB;

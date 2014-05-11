@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "Storehouse.h"
 
 
@@ -14,8 +13,8 @@ Storehouse::Storehouse()
 double Storehouse::GetStorageCost()
 {
 	double amount = 0;
-	amount += coalA->amount;
-	amount += coalB->amount;
+    //amount += coalA->amount;
+    //amount += coalB->amount;
 	return cost*amount;
 }
 
@@ -24,7 +23,7 @@ bool Storehouse::ExtendStorage(CoalTypeA const *coalA, double budget)
 	if (budget > 10000)
 	{
 		budget -= 10000;
-		storageA->amount += 10000;
+        //storageA->amount += 10000;
 		return true;
 	}
 	else
@@ -36,7 +35,7 @@ bool Storehouse::ExtendStorage(CoalTypeB const *coalB, double budget)
 	if (budget > 10000)
 	{
 		budget -= 10000;
-		storageB->amount += 10000;
+        //storageB->amount += 10000;
 		return true;
 	}
 	else
@@ -44,7 +43,7 @@ bool Storehouse::ExtendStorage(CoalTypeB const *coalB, double budget)
 }
 
 CoalTypeA* Storehouse::StoreCoal(CoalTypeA *coalA)
-{
+{/*
 	if (coalA->amount <= (storageA->amount - this->coalA->amount))
 	{
 		this->coalA->amount += coalA->amount;
@@ -56,10 +55,12 @@ CoalTypeA* Storehouse::StoreCoal(CoalTypeA *coalA)
 		coalA->amount -= (storageA->amount - this->coalA->amount);
 		return coalA;
 	}
+    */return coalA;
 }
 
 CoalTypeB* Storehouse::StoreCoal(CoalTypeB *coalB)
 {
+    /*
 	if (coalB->amount <= (storageB->amount - this->coalB->amount))
 	{
 		this->coalB->amount += coalB->amount;
@@ -71,10 +72,12 @@ CoalTypeB* Storehouse::StoreCoal(CoalTypeB *coalB)
 		coalB->amount -= (storageB->amount - this->coalB->amount);
 		return coalB;
 	}
+    */return coalB;
 }
 
 CoalTypeA* Storehouse::TakeCoal(CoalTypeA *coalA)
 {
+    /*
 	if (coalA->amount < this->coalA->amount)
 	{
 		this->coalA->amount -= coalA->amount;
@@ -85,11 +88,12 @@ CoalTypeA* Storehouse::TakeCoal(CoalTypeA *coalA)
 		coalA->amount = this->coalA->amount;
 		this->coalA->amount = 0;
 		return coalA;
-	}
+    }
+    */return coalA;
 }
 
 CoalTypeB* Storehouse::TakeCoal(CoalTypeB *coalB)
-{
+{/*
 	if (coalB->amount < this->coalB->amount)
 	{
 		this->coalB->amount -= coalB->amount;
@@ -101,4 +105,5 @@ CoalTypeB* Storehouse::TakeCoal(CoalTypeB *coalB)
 		this->coalB->amount = 0;
 		return coalB;
 	}
+    */return coalB;
 }

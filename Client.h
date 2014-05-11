@@ -1,12 +1,18 @@
-#pragma once
+#ifndef CLIENT_H
+#define CLIENT_H
+
+#include "CommonIncludes.h"
 #include "Order.h"
+
 class Client
 {
 public:
-	std::string name;
-	Order *avarageOrder;
+    QString name;
+    Order *avarageOrder;
 public:
-	Client();
-	Order MakeOrder();
+    Client();
+    Order MakeOrder();
+    QString GetName();
 };
 
+#endif //CLIENT_H

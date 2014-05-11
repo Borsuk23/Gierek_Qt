@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "Miner.h"
 
 
@@ -17,7 +16,7 @@ void Miner::MineCoal(CoalTypeA coal)
 {
 	if (!Strike())
 	{
-		coal.amount += (1 + experience * 0, 02) * 100;
+        //coal.amount += (1 + experience * 0, 02) * 100;
 	}
 }
 
@@ -25,7 +24,7 @@ void Miner::MineCoal(CoalTypeB coal)
 {
 	if (!Strike())
 	{
-		coal.amount += (1 + experience * 0, 03) * 160;
+        //coal.amount += (1 + experience * 0, 03) * 160;
 	}
 }
 

@@ -1,13 +1,17 @@
 #pragma once
+#include "CommonIncludes.h"
 #include "Mine.h"
+
+
 class Player
 {
 public:
-	std::string name;
+    QString name;
 	double score;
-	Mine *mine;
+    //Mine *mine = NULL;
 public:
 	Player();
+    Player(QString _name, int _difficulty=0);
 
 };
 
