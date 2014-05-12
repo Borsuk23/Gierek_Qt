@@ -5,20 +5,21 @@
 
 class Player
 {
-public:
+private:
     QString name;
 	double score;
-    Mine *mine = NULL;
+    Mine *mine;
 public:
 	Player();
     Player(QString _name, int _difficulty=0);
     Mine* GetMine();
-    void SetExtraction(CoalTypeA _coalA, CoalTypeB _coalB);
-    void SetSell(CoalTypeA _coalA, CoalTypeB _coalB);
-    void SetSalary(int _salary);
-    void HireMiner();
-    void NoticeMiner();
-    double CalculateScore();
+    QString GetName();
+    double GetScore();
+    void SetExtraction(CoalTypeA *_coalA, CoalTypeB *_coalB);
+    void SetSell(CoalTypeA *_coalA, CoalTypeB *_coalB);
+    void SetSalary(double _salary);
+    bool HireMiner();
+    bool NoticeMiner();
 
 };
 

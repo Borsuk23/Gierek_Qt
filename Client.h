@@ -12,7 +12,7 @@ protected:
 public:
     Client();
     Client(int _difficulty);
-    Order* MakeOrder();
+    Order* MakeOrder(int _date);
     QString GetName();
 };
 

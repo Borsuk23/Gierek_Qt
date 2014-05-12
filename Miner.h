@@ -5,19 +5,21 @@
 
 class Miner
 {
-public:
+private :
     QString name;
 	int experience;
 	double morale;
 public:
 	Miner();
-    Miner(QString name);
-	void MineCoal(CoalTypeA coal);
-	void MineCoal(CoalTypeB coal);
-	double GetEfficiency(CoalTypeA *coal);
-	double GetEfficiency(CoalTypeB *coal);
+    Miner(QString _name);
+    QString GetName();
+    double GetMorale();
+    void MineCoal(CoalTypeA *_coal);
+    void MineCoal(CoalTypeB *_coal);
+    double GetEfficiency(CoalTypeA const *_coal);
+    double GetEfficiency(CoalTypeB const *_coal);
 	bool Strike();
 	bool Dismissal();
-	double MoraleUpdate(double salary);
+    double MoraleUpdate(double _salary);
 };
 

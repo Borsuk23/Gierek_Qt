@@ -6,7 +6,8 @@ class CoalDeposit: public Client
 {
 public:
 	CoalDeposit();
-    Order MakeOrder();
+    CoalDeposit(int _difficulty);
+    Order* MakeOrder(int _date);
 };
 
 #endif //COALDEPOSIT_H

@@ -8,16 +8,14 @@
 
 class Market
 {
-public:
-    QVector<Client*> clients;
-    QVector<Order*> orderList;
-    QVector<Order*> offerList;
+private:
+    QList<Order*> orderList;
+    QList<Order*> offerList;
 public:
     Market();
-    Market(int _difficulty);
-	void AddOrder(Order *newOrder);
-    void AddOffer(Order *newOffer);
-	Order AccomplishTransaction(Order *offer);
+    void AddOrder(Order *_order);
+    void AddOffer(Order *_offer);
+    Order* AccomplishTransaction(Order *offer);
 };
 
 #endif //MARKET_H

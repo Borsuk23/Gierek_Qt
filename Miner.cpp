@@ -15,7 +15,17 @@ Miner::Miner(QString _name)
 	this->morale = 100;
 }
 
-void Miner::MineCoal(CoalTypeA _coal)
+QString Miner::GetName()
+{
+    return this->name;
+}
+
+double Miner::GetMorale()
+{
+    return this->morale;
+}
+
+void Miner::MineCoal(CoalTypeA *_coal)
 {
 	if (!Strike())
 	{
@@ -23,12 +33,23 @@ void Miner::MineCoal(CoalTypeA _coal)
 	}
 }
 
-void Miner::MineCoal(CoalTypeB _coal)
+void Miner::MineCoal(CoalTypeB *_coal)
 {
 	if (!Strike())
 	{
         //_coal.amount += (1 + experience * 0, 03) * 160;
 	}
+}
+
+double Miner::GetEfficiency(CoalTypeA const *_coal)
+{
+    return (1 + experience * 0, 02) * 100;
+}
+
+
+double Miner::GetEfficiency(CoalTypeB const *_coal)
+{
+    return (1 + experience * 0, 03) * 160;
 }
 
 bool Miner::Strike() 
@@ -49,18 +70,7 @@ bool Miner::Dismissal()
 		return true;
 }
 
-double Miner::GetEfficiency(CoalTypeA *coal)
-{
-	return (1 + experience * 0, 02) * 100;
-}
-
-	
-double Miner::GetEfficiency(CoalTypeB *coal)
-{
-	return (1 + experience * 0, 03) * 160;
-}
-
-double Miner::MoraleUpdate(double salary)
+double Miner::MoraleUpdate(double _salary)
 {
 	return 100;
 }

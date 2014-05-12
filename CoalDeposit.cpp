@@ -3,10 +3,16 @@
 
 CoalDeposit::CoalDeposit()
 {
+
 }
 
-Order CoalDeposit::MakeOrder()
+CoalDeposit::CoalDeposit(int _difficulty)
+{
+
+}
+
+Order* CoalDeposit::MakeOrder(int _date)
 {
 	Order *newOrder = new Order;
-	return *newOrder;
+    return newOrder;
 }

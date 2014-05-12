@@ -21,15 +21,21 @@ public:
 private slots:
     void on_actionNew_game_triggered();
 
-
     void on_actionExit_triggered();
 
     void on_actionAbout_triggered();
 
     void on_playTurnButton_clicked();
 
-private:
+    void on_salaryUpdateButton_clicked();
 
+    void on_coalExtractionSlider_valueChanged(int value);
+
+    void on_upgradeStorehouseButton_clicked();
+
+private:
+    CoalTypeA *coalA=NULL;
+    CoalTypeB *coalB=NULL;
     Game *game=NULL;
     Ui::MainWindow *ui;
 };

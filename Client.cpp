@@ -13,12 +13,12 @@ Client::Client(int _difficulty)
     this->avarageOrder->GetCoalB()->SetPrice(800-100*_difficulty);
 }
 
+Order* Client::MakeOrder(int _date)
+{
+
+}
+
 QString Client::GetName()
 {
     return this->name;
-}
-
-Order* Client::MakeOrder()
-{
-
 }

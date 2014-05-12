@@ -5,10 +5,10 @@ Order::Order()
     this->coalA = new CoalTypeA();
     this->coalB = new CoalTypeB();
 }
-Order::Order(CoalTypeA *coalA, CoalTypeB *coalB)
+Order::Order(CoalTypeA *_coalA, CoalTypeB *_coalB)
 {
-	this->coalA = coalA;
-	this->coalB = coalB;
+    this->coalA = _coalA;
+    this->coalB = _coalB;
 }
 
 CoalTypeA* Order::GetCoalA()

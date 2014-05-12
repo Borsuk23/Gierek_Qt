@@ -14,7 +14,12 @@ Ironworks::Ironworks()
 	delete typeB;
 }
 
-Order Ironworks::MakeOrder()
+Ironworks::Ironworks(int _difficulty)
+{
+
+}
+
+Order* Ironworks::MakeOrder(int _date)
 {
 	Order *newOrder = new Order();
 
@@ -26,5 +31,5 @@ Order Ironworks::MakeOrder()
     newOrder->coalB->amount = ((std::rand() % 20 - 10) / 100 + 1)*avarageOrder->coalB->amount;
 	newOrder->coalB->price = avarageOrder->coalB->price;
 */
-	return *newOrder;
+    return newOrder;
 }

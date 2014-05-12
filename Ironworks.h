@@ -4,6 +4,7 @@ class Ironworks: Client
 {
 public:
 	Ironworks();
-	Order MakeOrder();
+    Ironworks(int _difficulty);
+    Order* MakeOrder(int _date);
 };
 

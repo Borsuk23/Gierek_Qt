@@ -4,28 +4,37 @@
 #include "Storehouse.h"
 class Mine
 {
-public:
-	std::string name;
+private:
+    QString name;
+    double budget;
     int salary;
-	double budget;
     QList<Miner*> miners;
-	Storehouse *storage;
-
+    Storehouse *storage;
     CoalTypeA *extractCoalA;
     CoalTypeB *extractCoalB;
-
     CoalTypeA *sellCoalA;
     CoalTypeB *sellCoalB;
-
 public:
-	Mine();
-	void MineCoal();
-	Order PlaceOnMarket();
-	void PaySalary();
-	void CheckCrew();
-	CoalTypeA CalculateExtraction(CoalTypeA *coal);
-	CoalTypeB CalculateExtraction(CoalTypeB *coal);
-
-
+    Mine();
+    Mine(int _difficulty);
+    QString GetName();
+    double GetBudget();
+    double GetCurrentSalary();
+    double GetOverallSalary();
+    void SetSalary(double _salary);
+    QList<Miner*> GetMiners();
+    Storehouse* GetStorehouse();
+    void SetCoalAExtraction(double _amount);
+    void SetCoalBExtraction(double _amount);
+    void SetCoalASell(double _amount, double _price);
+    void SetCoalBSell(double _amount, double _price);
+    void SetBudget(double _budget);
+    void CheckCrew();
+    double GetMorale();
+    double CalculateExtraction(CoalTypeA const *coal);
+    double CalculateExtraction(CoalTypeB const *coal);
+    void MineCoal();
+    bool PaySalary();
+    Order* PlaceOnMarket();
 };
 
