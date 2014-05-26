@@ -1,5 +1,6 @@
 #pragma once
 #include "Miner.h"
+#include "Market.h"
 #include "Order.h"
 #include "Storehouse.h"
 class Mine
@@ -33,8 +34,11 @@ public:
     double GetMorale();
     double CalculateExtraction(CoalTypeA const *coal);
     double CalculateExtraction(CoalTypeB const *coal);
-    void MineCoal();
+    void HireWorker();
+    void MineCoal(CoalTypeA *_coalA, CoalTypeB *_coalB);
     bool PaySalary();
-    Order* PlaceOnMarket();
+    bool PayStorageCost();
+    bool PlayTurn(Market *_market);
+
 };
 

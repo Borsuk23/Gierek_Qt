@@ -47,12 +47,14 @@ double Coal::Substract(double _amount)
     if(_amount>0 && this->amount>=_amount)
     {
         this->amount-=_amount;
-        return 0;
+        return _amount;
     }
     else if(_amount>0)
     {
         _amount-=this->amount;
+        double substracted = this->amount;
         this->amount=0;
-        return _amount;
+        return substracted;
     }
+    return 0;
 }

@@ -31,7 +31,8 @@ SOURCES += main.cpp\
     CoalTypeA.cpp \
     CoalTypeB.cpp \
     newgame.cpp \
-    newplayer.cpp
+    newplayer.cpp \
+    dataseed.cpp
 
 HEADERS  += mainwindow.h \
     AI.h \
@@ -52,7 +53,8 @@ HEADERS  += mainwindow.h \
     CoalTypeB.h \
     CommonIncludes.h \
     newgame.h \
-    newplayer.h
+    newplayer.h \
+    dataseed.h
 
 FORMS    += mainwindow.ui \
     newgame.ui \

@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "mainwindow.h"
 #include <QMessageBox>
 
 
@@ -15,38 +14,75 @@ Game::Game(int _difficulty, int _lenght, QString _name)
     this->gameLenght = _lenght;
     this->numberOfMines = _difficulty * 10;
     this->player = new Player(_name);
-    this->market = new Market();
+
     for(int i=0; i<numberOfMines; i++)
     {
         this->mines.push_back(new AI());
     }
 
-    for(int i=0; i<numberOfMines; i++)
+    for(int i=0; i<5; i++)
     {
-        this->clients.push_back(new Client());
+        this->clients.push_back(new Ironworks(_difficulty));
     }
-}
+    for(int i=0; i<5; i++)
+    {
+        this->clients.push_back(new PowerStation(_difficulty));
+    }
+    for(int i=0; i<50; i++)
+    {
+        this->clients.push_back(new CoalDeposit(_difficulty));
+    }
+    for(int i=0; i<10; i++)
+    {
+        this->clients.push_back(new HeatingPlant(_difficulty));
+    }
 
-bool Game::PlayTurn( )
-{
+    this->market = new Market();
     for(int i =0; i<this->mines.size(); i++)
     {
-        this->GetMarket()->AddOffer(this->mines[i]->SellOffer());
+        this->GetMarket()->AddOffer(this->mines.at(i)->SellOffer());
     }
-    //this->GetPlayer()->SetSalary();
-  //  this->GetPlayer()->SetExtraction(double _coalA, double _coalB);
-  //  this->GetPlayer()->SetSell();
-  //  this->GetPlayer()->GetMine()->MineCoal();
+    for(int i=0; i<this->clients.size(); i++)
+    {
+        this->market->AddOrder(this->clients.at(i)->MakeOrder(this->date));
+    }
+
+}
+
+bool Game::PlayTurn(double _salary, CoalTypeA *_extractCoalA, CoalTypeB *_extractCoalB,CoalTypeA *_saleCoalA,CoalTypeB *_saleCoalB)
+{
+    //referesh Market
+    delete this->market;
+    this->market=new Market();
+    for(int i =0; i<this->mines.size(); i++)
+    {
+        this->GetMarket()->AddOffer(this->mines.at(i)->SellOffer());
+    }
+    for(int i=0; i<this->clients.size(); i++)
+    {
+        this->market->AddOrder(this->clients.at(i)->MakeOrder(this->date));
+    }
+
+
+    this->GetPlayer()->SetSalary(_salary);
+    this->GetPlayer()->SetExtraction(_extractCoalA, _extractCoalB);
+    this->GetPlayer()->SetSell(_saleCoalA, _saleCoalB);
+    this->GetPlayer()->GetMine()->PlayTurn(this->market);
 
     this->date++;
     return true;
 }
 
-bool Game::EndGame(QWidget *_mainWindow)
+bool Game::EndGame()
 {
-    QMessageBox *gameEnd = new QMessageBox();
-    gameEnd->about(0,"KONIEC", "wygrales");
-    return true;
+    if(this->date>=this->gameLenght)
+    {
+        QMessageBox *gameEnd = new QMessageBox();
+        gameEnd->about(0,"KONIEC", "wygrales");
+        return true;
+    }
+    else
+        return false;
 }
 
 int Game::GetDate()

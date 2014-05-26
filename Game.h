@@ -5,7 +5,10 @@
 #include "Player.h"
 #include "AI.h"
 #include "Client.h"
-#include <qvector.h>
+#include "Ironworks.h"
+#include "PowerStation.h"
+#include "CoalDeposit.h"
+#include "HeatingPlant.h"
 #include <QWidget>
 
 
@@ -25,8 +28,8 @@ private:
 public:
     Game();
     Game(int _difficulty, int _lenght, QString _name);
-    bool PlayTurn();
-    bool EndGame(QWidget *_mainWindow);
+    bool PlayTurn(double _salary, CoalTypeA *_extractCoalA, CoalTypeB *_extractCoalB,CoalTypeA *_saleCoalA,CoalTypeB *_saleCoalB);
+    bool EndGame();
     int GetDate();
     double Completed();
     Player* GetPlayer();

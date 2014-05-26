@@ -29,7 +29,7 @@ void Miner::MineCoal(CoalTypeA *_coal)
 {
 	if (!Strike())
 	{
-        //_coal.amount += (1 + experience * 0, 02) * 100;
+        _coal->Add((1 + experience * 0, 02) * 20);
 	}
 }
 
@@ -37,24 +37,24 @@ void Miner::MineCoal(CoalTypeB *_coal)
 {
 	if (!Strike())
 	{
-        //_coal.amount += (1 + experience * 0, 03) * 160;
+        _coal->Add((1 + experience * 0, 03) * 32);
 	}
 }
 
 double Miner::GetEfficiency(CoalTypeA const *_coal)
 {
-    return (1 + experience * 0, 02) * 100;
+    return (1 + experience * 0, 02) * 20;
 }
 
 
 double Miner::GetEfficiency(CoalTypeB const *_coal)
 {
-    return (1 + experience * 0, 03) * 160;
+    return (1 + experience * 0, 03) * 32;
 }
 
 bool Miner::Strike() 
 {
-	double check = (rand() % 100)*(rand() % 100)*(rand() % 100);
+    double check = (rand() % 100)*(rand() % 100)/100*(rand() % 100)/100;
 	if (check < morale)
 		return false;
 	else
@@ -63,7 +63,7 @@ bool Miner::Strike()
 
 bool Miner::Dismissal()
 {
-	double check = (rand() % 90)*(rand() % 90)*(rand() % 90);
+    double check = (rand() % 90)*(rand() % 90)/100*(rand() % 90)/100;
 	if (check < morale)
 		return false;
 	else

@@ -1,6 +1,6 @@
 #pragma once
 #include "Client.h"
-class Ironworks: Client
+class Ironworks: public Client
 {
 public:
 	Ironworks();

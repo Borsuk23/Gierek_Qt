@@ -22,22 +22,24 @@ Mine* Player::GetMine()
 
 QString Player::GetName()
 {
-
+    return this->name;
 }
 
 double Player::GetScore()
 {
-
+    return 100;
 }
 
 void Player::SetExtraction(CoalTypeA *_coalA, CoalTypeB *_coalB)
 {
-
+    this->mine->SetCoalAExtraction(_coalA->GetAmount());
+    this->mine->SetCoalBExtraction(_coalB->GetAmount());
 }
 
 void Player::SetSell(CoalTypeA *_coalA, CoalTypeB *_coalB)
 {
-
+    this->mine->SetCoalASell(_coalA->GetAmount(), _coalA->GetPrice());
+    this->mine->SetCoalBSell(_coalB->GetAmount(), _coalB->GetPrice());
 }
 
 void Player::SetSalary(double _salary)
@@ -45,14 +47,14 @@ void Player::SetSalary(double _salary)
     this->mine->SetSalary(_salary);
 }
 
-bool Player::HireMiner()
+void Player::HireMiner()
 {
-
+    this->mine->HireWorker();
 }
 
-bool Player::NoticeMiner()
+void Player::NoticeMiner()
 {
-
+    this->mine->GetMiners().pop_back();
 }
 
 

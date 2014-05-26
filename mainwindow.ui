@@ -74,11 +74,11 @@
        <rect>
         <x>10</x>
         <y>370</y>
-        <width>141</width>
+        <width>411</width>
         <height>61</height>
        </rect>
       </property>
-      <layout class="QGridLayout" name="gridLayout_2">
+      <layout class="QGridLayout" name="gridLayout_2" columnstretch="5,85">
        <item row="0" column="0">
         <widget class="QLabel" name="budgetLabel">
          <property name="text">
@@ -109,39 +109,6 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>430</x>
-        <y>350</y>
-        <width>201</width>
-        <height>81</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="QPushButton" name="playTurnButton">
-           <property name="text">
-            <string>Play turn!</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLCDNumber" name="dateDisplay"/>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="QProgressBar" name="completeBar">
-         <property name="value">
-          <number>0</number>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
      <widget class="QTabWidget" name="manageSections">
       <property name="geometry">
        <rect>
@@ -152,7 +119,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="Mine">
        <attribute name="title">
@@ -244,7 +211,7 @@
            </layout>
           </item>
           <item>
-           <widget class="QLabel" name="coalBStoredlabel">
+           <widget class="QLabel" name="coalBStoredLabel">
             <property name="text">
              <string>0</string>
             </property>
@@ -456,14 +423,17 @@
            </widget>
           </item>
           <item>
-           <widget class="QSlider" name="horizontalSlider_2">
+           <widget class="QSlider" name="coalBSaleAmountBar">
+            <property name="maximum">
+             <number>100</number>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="coalBSellAmountLabel">
+           <widget class="QLabel" name="coalBSaleAmountLabel">
             <property name="text">
              <string>TextLabel</string>
             </property>
@@ -489,7 +459,10 @@
            </widget>
           </item>
           <item>
-           <widget class="QSlider" name="horizontalSlider_3">
+           <widget class="QSlider" name="coalASaleAmountBar">
+            <property name="maximum">
+             <number>100</number>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -507,35 +480,13 @@
         <widget class="QWidget" name="layoutWidget">
          <property name="geometry">
           <rect>
-           <x>40</x>
-           <y>60</y>
-           <width>164</width>
+           <x>41</x>
+           <y>161</y>
+           <width>176</width>
            <height>22</height>
           </rect>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="40,70">
-          <item>
-           <widget class="QLabel" name="label_8">
-            <property name="text">
-             <string>Price</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="coalAPriceInput"/>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QWidget" name="layoutWidget">
-         <property name="geometry">
-          <rect>
-           <x>40</x>
-           <y>160</y>
-           <width>164</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="40,60">
+         <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="25,50,10">
           <item>
            <widget class="QLabel" name="label">
             <property name="text">
@@ -544,7 +495,51 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="coalBPriceInput"/>
+           <widget class="QLineEdit" name="coalBPriceInput">
+            <property name="text">
+             <string>400</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_31">
+            <property name="text">
+             <string>$</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="layoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>41</x>
+           <y>60</y>
+           <width>176</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="25,50,10">
+          <item>
+           <widget class="QLabel" name="label_8">
+            <property name="text">
+             <string>Price</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="coalAPriceInput">
+            <property name="text">
+             <string>600</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_29">
+            <property name="text">
+             <string>$</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -594,14 +589,14 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_4">
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="hireWorkerButton">
            <property name="text">
             <string>Hire new worker</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_2">
+          <widget class="QPushButton" name="noticeWorkerButton">
            <property name="text">
             <string>Notice worker</string>
            </property>
@@ -713,13 +708,13 @@
        <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
-          <x>10</x>
+          <x>30</x>
           <y>230</y>
-          <width>451</width>
+          <width>571</width>
           <height>81</height>
          </rect>
         </property>
-        <layout class="QGridLayout" name="gridLayout" rowstretch="20,0,0" columnstretch="20,0,0,0,0,0,0">
+        <layout class="QGridLayout" name="gridLayout" rowstretch="20,0,0" columnstretch="20,0,10,0,0,10,0">
          <property name="sizeConstraint">
           <enum>QLayout::SetFixedSize</enum>
          </property>
@@ -737,7 +732,7 @@
           </widget>
          </item>
          <item row="2" column="5">
-          <widget class="QLabel" name="label_18">
+          <widget class="QLabel" name="coalBSoldAmount">
            <property name="text">
             <string>0</string>
            </property>
@@ -764,7 +759,7 @@
           </widget>
          </item>
          <item row="1" column="5">
-          <widget class="QLabel" name="label_12">
+          <widget class="QLabel" name="coalASoldAmount">
            <property name="text">
             <string>0</string>
            </property>
@@ -808,7 +803,7 @@
           </widget>
          </item>
          <item row="2" column="2" colspan="2">
-          <widget class="QLabel" name="label_21">
+          <widget class="QLabel" name="coalBAveragePrice">
            <property name="text">
             <string>0</string>
            </property>
@@ -818,7 +813,7 @@
           </widget>
          </item>
          <item row="1" column="2" colspan="2">
-          <widget class="QLabel" name="label_23">
+          <widget class="QLabel" name="coalAAveragePrice">
            <property name="text">
             <string>0</string>
            </property>
@@ -847,6 +842,13 @@
           </widget>
          </item>
          <item>
+          <widget class="QLabel" name="label_25">
+           <property name="text">
+            <string>Name    Coal Type A    &amp;    Coal Type B</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QListView" name="competitionList"/>
          </item>
         </layout>
@@ -869,11 +871,73 @@
           </widget>
          </item>
          <item>
+          <widget class="QLabel" name="label_17">
+           <property name="text">
+            <string>Name    Coal Type A    &amp;    Coal Type B</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QListView" name="ordersList"/>
          </item>
         </layout>
        </widget>
       </widget>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>432</x>
+        <y>355</y>
+        <width>171</width>
+        <height>77</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_9">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_11">
+         <item>
+          <widget class="QPushButton" name="playTurnButton">
+           <property name="text">
+            <string>Play turn!</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <widget class="QLCDNumber" name="dateDisplay"/>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <item>
+              <widget class="QLabel" name="label_27">
+               <property name="text">
+                <string>Month:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="monthLabel">
+               <property name="text">
+                <string>Month</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QProgressBar" name="completeBar">
+         <property name="value">
+          <number>0</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>
@@ -892,7 +956,6 @@
      <string>Menu</string>
     </property>
     <addaction name="actionNew_game"/>
-    <addaction name="actionLoad_game"/>
     <addaction name="separator"/>
     <addaction name="actionStatistics"/>
     <addaction name="separator"/>

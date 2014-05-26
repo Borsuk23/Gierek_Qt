@@ -3,11 +3,11 @@
 
 Storehouse::Storehouse()
 {
-	this->coalA = new CoalTypeA();
-	this->coalB = new CoalTypeB();
+    this->coalA = new CoalTypeA(10000,0);
+    this->coalB = new CoalTypeB(5000,0);
 	this->storageA = new CoalTypeA(50000, 0);
 	this->storageB = new CoalTypeB(30000, 0);
-    this->cost = 5;
+    this->cost = 0.5;
 }
 
 Storehouse::Storehouse(int _difficulty)
@@ -15,72 +15,80 @@ Storehouse::Storehouse(int _difficulty)
 
 }
 
-CoalTypeA* Storehouse::StoreCoal(CoalTypeA *coalA)
-{/*
-    if (coalA->amount <= (storageA->amount - this->coalA->amount))
-    {
-        this->coalA->amount += coalA->amount;
-        return nullptr;
-    }
-    else
-    {
-        this->coalA->amount = storageA->amount;
-        coalA->amount -= (storageA->amount - this->coalA->amount);
-        return coalA;
-    }
-    */return coalA;
-}
-
-CoalTypeB* Storehouse::StoreCoal(CoalTypeB *coalB)
+void Storehouse::StoreCoal(CoalTypeA *_coalA)
 {
-    /*
-    if (coalB->amount <= (storageB->amount - this->coalB->amount))
+    if (_coalA->GetAmount() <= (this->storageA->GetAmount() - this->coalA->GetAmount()))
     {
-        this->coalB->amount += coalB->amount;
-        return nullptr;
+        this->coalA->Add(_coalA->Substract(_coalA->GetAmount()));
     }
     else
     {
-        this->coalB->amount = storageB->amount;
-        coalB->amount -= (storageB->amount - this->coalB->amount);
-        return coalB;
+        this->coalA->Add(_coalA->Substract((this->storageA->GetAmount() - this->coalA->GetAmount())));
     }
-    */return coalB;
 }
 
-CoalTypeA* Storehouse::TakeCoal(CoalTypeA *coalA)
+/*!
+ * \brief Storehouse::StoreCoal - składowanie węgla w magazynie
+ * \param _coalB - podajemy ile węgla B chcemy zmagazynować
+ * \return zwraca ilość węgla, która się nie zmieściła
+ */
+void Storehouse::StoreCoal(CoalTypeB *_coalB)
 {
-    /*
-    if (coalA->amount < this->coalA->amount)
+    if (_coalB->GetAmount() <= (this->storageB->GetAmount() - this->coalB->GetAmount()))
     {
-        this->coalA->amount -= coalA->amount;
-        return coalA;
+        this->coalB->Add(_coalB->Substract(_coalB->GetAmount()));
     }
     else
     {
-        coalA->amount = this->coalA->amount;
-        this->coalA->amount = 0;
-        return coalA;
+        this->coalB->Add(_coalB->Substract((this->storageB->GetAmount() - this->coalB->GetAmount())));
     }
-    */return coalA;
 }
 
-CoalTypeB* Storehouse::TakeCoal(CoalTypeB *coalB)
-{/*
-    if (coalB->amount < this->coalB->amount)
+
+/*!
+ * \brief Storehouse::TakeCoal - zabranie węgla z magazynu
+ * \param _coalA - podajemy ile węgla A chcemy
+ * \return zwraca ilość która chcieliśmy lub która mamy w magazynie
+ */
+CoalTypeA* Storehouse::TakeCoal(CoalTypeA *_coalA)
+{
+    if (_coalA->GetAmount() < this->coalA->GetAmount())
     {
-        this->coalB->amount -= coalB->amount;
-        return coalB;
+        this->coalA->Substract(coalA->GetAmount());
+        return _coalA;
     }
     else
     {
-        coalB->amount = this->coalB->amount;
-        this->coalB->amount = 0;
-        return coalB;
+        _coalA->SetAmount(this->coalA->GetAmount());
+        this->coalA->SetAmount(0);
+        return _coalA;
     }
-    */return coalB;
 }
 
+/*!
+ * \brief Storehouse::TakeCoal - zabranie węgla z magazynu
+ * \param _coalB - podajemy ile węgla B chcemy
+ * \return zwraca ilość która chcieliśmy lub która mamy w magazynie
+ */
+CoalTypeB* Storehouse::TakeCoal(CoalTypeB *_coalB)
+{
+    if (_coalB->GetAmount() < this->coalB->GetAmount())
+    {
+        this->coalB->Substract(coalB->GetAmount());
+        return _coalB;
+    }
+    else
+    {
+        _coalB->SetAmount(this->coalB->GetAmount());
+        this->coalB->SetAmount(0);
+        return _coalB;
+    }
+}
+
+/*!
+ * \brief Storehouse::GetStorageCost wylicza koszt magazynowania
+ * \return zwraca koszt składowania węgla
+ */
 double Storehouse::GetStorageCost()
 {
 	double amount = 0;
@@ -89,6 +97,12 @@ double Storehouse::GetStorageCost()
     return this->cost*amount;
 }
 
+/*!
+ * \brief Storehouse::ExtendStorage rozbudowa magazynu
+ * \param _coalA wybrany rodzaj węgla
+ * \param _budget podany budżet gracza
+ * \return budżet po rozbudowie
+ */
 double Storehouse::ExtendStorage(CoalTypeA const *_coalA, double _budget)
 {
     if (_budget > 10000)
@@ -101,6 +115,12 @@ double Storehouse::ExtendStorage(CoalTypeA const *_coalA, double _budget)
         return _budget;
 }
 
+/*!
+ * \brief Storehouse::ExtendStorage rozbudowa magazynu
+ * \param _coalB wybrany rodzaj węgla
+ * \param _budget podany budżet gracza
+ * \return budżet po rozbudowie
+ */
 double Storehouse::ExtendStorage(CoalTypeB const *_coalB, double _budget)
 {
     if (_budget > 10000)
@@ -113,21 +133,41 @@ double Storehouse::ExtendStorage(CoalTypeB const *_coalB, double _budget)
         return _budget;
 }
 
-double Storehouse::GetStorageAmount(CoalTypeA const *_coal)
+/*!
+ * \brief Storehouse::GetStorageAmount pojemność magazynu
+ * \param _coalA typ węgla podany przez użytkownika
+ * \return zwraca pojemność
+ */
+double Storehouse::GetStorageAmount(CoalTypeA const *_coalA)
 {
     return this->storageA->GetAmount();
 }
 
-double Storehouse::GetStorageAmount(CoalTypeB const *_coal)
+/*!
+ * \brief Storehouse::GetStorageAmount pojemność magazynu
+ * \param _coalA typ węgla podany przez użytkownika
+ * \return zwraca pojemność
+ */
+double Storehouse::GetStorageAmount(CoalTypeB const *_coalA)
 {
     return this->storageB->GetAmount();
 }
 
+/*!
+ * \brief Storehouse::GetStoredCoal zmagazynowany węgiel
+ * \param _coal typ węgla podany przez użytkownika
+ * \return ilość zmagazynowanego węgla
+ */
 double Storehouse::GetStoredCoal(CoalTypeA const *_coal)
 {
     return this->coalA->GetAmount();
 }
 
+/*!
+ * \brief Storehouse::GetStoredCoal zmagazynowany węgiel
+ * \param _coal typ węgla podany przez użytkownika
+ * \return ilość zmagazynowanego węgla
+ */
 double Storehouse::GetStoredCoal(CoalTypeB const *_coal)
 {
     return this->coalB->GetAmount();

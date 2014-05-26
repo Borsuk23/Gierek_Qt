@@ -1,6 +1,6 @@
 #pragma once
 #include "Client.h"
-class HeatingPlant: Client
+class HeatingPlant: public Client
 {
 public:
 	HeatingPlant();

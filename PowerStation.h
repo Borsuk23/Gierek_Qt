@@ -1,6 +1,6 @@
 #pragma once
 #include "Client.h"
-class PowerStation: Client
+class PowerStation: public Client
 {
 public:
 	PowerStation();

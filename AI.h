@@ -13,6 +13,7 @@ private:
     CoalTypeB *avarageExtractCoalB;
 public:
 	AI();
+    QString GetName();
     Order* SellOffer();
 };
 

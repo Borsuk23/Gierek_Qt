@@ -15,3 +15,8 @@ Order* AI::SellOffer()
     newOrder->SetCoalB(this->avarageExtractCoalB);
     return newOrder;
 }
+
+QString AI::GetName()
+{
+    return this->name;
+}

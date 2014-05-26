@@ -7,8 +7,8 @@ Order::Order()
 }
 Order::Order(CoalTypeA *_coalA, CoalTypeB *_coalB)
 {
-    this->coalA = _coalA;
-    this->coalB = _coalB;
+    this->coalA = new CoalTypeA(_coalA->GetAmount(),_coalA->GetPrice());
+    this->coalB = new CoalTypeB(_coalB->GetAmount(),_coalB->GetPrice());
 }
 
 CoalTypeA* Order::GetCoalA()

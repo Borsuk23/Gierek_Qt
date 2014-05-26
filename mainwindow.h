@@ -16,7 +16,15 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     explicit MainWindow(QWidget *parent = 0, Game *_game = 0);
     ~MainWindow();
+
+    /*!
+     * \brief odświeżanie okna
+     *
+     * metoda odświeżająca zawartość wszystkich składowych okna
+     * uaktualnia niezbędne dane na podstawie modelu gry i jego składowych
+     */
     void refreshContent();
+    void showStartPage();
 
 private slots:
     void on_actionNew_game_triggered();
@@ -32,6 +40,13 @@ private slots:
     void on_coalExtractionSlider_valueChanged(int value);
 
     void on_upgradeStorehouseButton_clicked();
+
+
+    void on_coalASaleAmountBar_valueChanged(int value);
+
+    void on_coalBSaleAmountBar_valueChanged(int value);
+
+    void on_hireWorkerButton_clicked();
 
 private:
     CoalTypeA *coalA=NULL;

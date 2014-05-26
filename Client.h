@@ -8,11 +8,11 @@ class Client
 {
 protected:
     QString name;
-    Order *avarageOrder;
+    Order *averageOrder;
 public:
     Client();
     Client(int _difficulty);
-    Order* MakeOrder(int _date);
+    virtual Order* MakeOrder(int _date) {return NULL;}
     QString GetName();
 };
 

@@ -28,6 +28,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::showStartPage()
+{
+    this->ui->windowPages->setCurrentWidget(this->ui->blankPage);
+}
+
 void MainWindow::on_actionNew_game_triggered()
 {
     NewGame *popup = new NewGame();
@@ -46,11 +51,11 @@ void MainWindow::on_actionNew_game_triggered()
 void MainWindow::on_actionExit_triggered()
 {
     QMessageBox *msg=new QMessageBox();
-    if(game!=NULL)
+    if(this->game!=NULL)
     {
-        msg->setText(game->GetPlayer()->GetName());
+        msg->setText(this->game->GetPlayer()->GetName());
         msg->show();
-        delete game;
+        delete this->game;
     }
     else
     {
@@ -67,44 +72,66 @@ void MainWindow::on_actionAbout_triggered()
 
 void MainWindow::on_playTurnButton_clicked()
 {
-    this->game->PlayTurn();
-    this->ui->dateDisplay->display(this->game->GetDate());
-    this->ui->completeBar->setValue(this->game->Completed());
+    this->game->PlayTurn(this->ui->salaryLabel->text().toDouble(),
+                         new CoalTypeA(this->ui->coalAExtractionAmountLabel->text().toDouble(),0),
+                         new CoalTypeB(this->ui->coalBExtractionAmountLabel->text().toDouble(),0),
+                         new CoalTypeA(this->ui->coalASaleAmountLabel->text().toDouble(),this->ui->coalAPriceInput->text().toDouble()),
+                         new CoalTypeB(this->ui->coalBSaleAmountLabel->text().toDouble(),this->ui->coalBPriceInput->text().toDouble()));
     this->refreshContent();
+    if(this->game->EndGame())
+        showStartPage();
 }
 
 void MainWindow::refreshContent()
 {
-    //update Mine tab
-
+    /*!
+     *  odświeżanie zakładki Mine
+     */
     //coal extraction
     this->ui->coalAExtractionAmountLabel->setText(QString::number((double)(this->ui->coalExtractionSlider->maximum()-this->ui->coalExtractionSlider->value())/(this->ui->coalExtractionSlider->maximum())
                                                                   *(this->game->GetPlayer()->GetMine()->CalculateExtraction(this->coalA))
                                                                   ));
 
-            //(QString::number((this->game->GetPlayer()->GetMine()->CalculateExtraction(this->game->GetPlayer()->GetMine()->extractCoalA)*(1-(this->ui->coalExtractionSlider->maximum()-value)/this->ui->coalExtractionSlider->maximum())))); //extraction *1-coalB%
+    //(QString::number((this->game->GetPlayer()->GetMine()->CalculateExtraction(this->game->GetPlayer()->GetMine()->extractCoalA)*(1-(this->ui->coalExtractionSlider->maximum()-value)/this->ui->coalExtractionSlider->maximum())))); //extraction *1-coalB%
     this->ui->coalBExtractionAmountLabel->setText(QString::number((double)(this->ui->coalExtractionSlider->value())/(this->ui->coalExtractionSlider->maximum())*
                                                                   (this->game->GetPlayer()->GetMine()->CalculateExtraction(this->coalB))
                                                                   ));
 
     //coal sale
+    this->ui->coalASaleAmountLabel->setText(QString::number((double)(this->ui->coalASaleAmountBar->value()*this->ui->coalAExtractionAmountLabel->text().toDouble()/100)));
+    this->ui->coalBSaleAmountLabel->setText(QString::number((double)(this->ui->coalBSaleAmountBar->value()*this->ui->coalBExtractionAmountLabel->text().toDouble()/100)));
 
     //storehouse
 
     this->ui->coalAStoredBar->setMaximum(this->game->GetPlayer()->GetMine()->GetStorehouse()->GetStorageAmount(this->coalA));
     this->ui->coalBStoredBar->setMaximum(this->game->GetPlayer()->GetMine()->GetStorehouse()->GetStorageAmount(this->coalB));
-    this->ui->coalBStoredBar->setValue(this->game->GetPlayer()->GetMine()->GetStorehouse()->GetStoredCoal(this->coalA));
+    this->ui->coalAStoredBar->setValue(this->game->GetPlayer()->GetMine()->GetStorehouse()->GetStoredCoal(this->coalA));
     this->ui->coalBStoredBar->setValue(this->game->GetPlayer()->GetMine()->GetStorehouse()->GetStoredCoal(this->coalB));
-    //update HR tab
+    this->ui->coalAStoredLabel->setText(QString::number(this->game->GetPlayer()->GetMine()->GetStorehouse()->GetStoredCoal(this->coalA)));
+    this->ui->coalBStoredLabel->setText(QString::number(this->game->GetPlayer()->GetMine()->GetStorehouse()->GetStoredCoal(this->coalB)));
 
-    //fill miners list
+    this->ui->storageCostLabel->setText(QString::number(this->game->GetPlayer()->GetMine()->GetStorehouse()->GetStorageCost()));
+
+
+    /*! \brief odświeżanie zakładki HR
+     *
+     */
+
+    /*! wypełnienie listy górników */
     QStandardItemModel *model = new QStandardItemModel();
     this->ui->minerList->setModel(model);
     for(int i=0; i<game->GetPlayer()->GetMine()->GetMiners().size();i++)
     {
         QStandardItem *item;
             item = new QStandardItem();
-            item->setText(game->GetPlayer()->GetMine()->GetMiners()[i]->GetName());
+            QString minerData = game->GetPlayer()->GetMine()->GetMiners()[i]->GetName();
+            minerData.append("  wydajność: ");
+            minerData.append(QString::number(game->GetPlayer()->GetMine()->GetMiners()[i]->GetEfficiency(this->coalA)));
+            minerData.append("/");
+            minerData.append(QString::number(game->GetPlayer()->GetMine()->GetMiners()[i]->GetEfficiency(this->coalB)));
+            minerData.append("  morale: ");
+            minerData.append(QString::number(game->GetPlayer()->GetMine()->GetMiners()[i]->GetMorale()));
+            item->setText(minerData);
             item->setEditable( false );
             model->appendRow( item );
     }
@@ -113,27 +140,73 @@ void MainWindow::refreshContent()
     this->ui->overallSalaryLabel->setText(QString::number(this->game->GetPlayer()->GetMine()->GetOverallSalary()));
     this->ui->moraleLabel->setText(QString::number(this->game->GetPlayer()->GetMine()->GetMorale()));
 
-    //update Market tab
+    /*! \brief odświeżanie zakładki Market
+     *
+     */
 
-    //fill opponent mines list
+    /*! wypełnienie listy zamówień */
     model= new QStandardItemModel();
-    ui->competitionList->setModel( model );
-    for(int i=0; i<game->GetClients().size(); i++)
+    ui->ordersList->setModel( model );
+    for(int i=0; i<game->GetMarket()->GetOrdersList().size(); i++)
     {
         QStandardItem *item;
             item = new QStandardItem();
-            item->setText(game->GetClients()[i]->GetName());
+            QString orderDetails = game->GetClients().at(i)->GetName();
+            orderDetails.append("   ");
+            orderDetails.append(QString::number(game->GetMarket()->GetOrdersList().at(i)->GetCoalA()->GetAmount()));
+            orderDetails.append("/");
+            orderDetails.append(QString::number(game->GetMarket()->GetOrdersList().at(i)->GetCoalA()->GetPrice()));
+            orderDetails.append("$  &  ");
+            orderDetails.append(QString::number(game->GetMarket()->GetOrdersList().at(i)->GetCoalB()->GetAmount()));
+            orderDetails.append("/");
+            orderDetails.append(QString::number(game->GetMarket()->GetOrdersList().at(i)->GetCoalB()->GetPrice()));
+            orderDetails.append("$");
+            item->setText(orderDetails);
             item->setEditable( false );
             model->appendRow( item );
     }
 
-    //fill orders list
+    /*! wypełnienie listy ofert */
+    model= new QStandardItemModel();
+    ui->competitionList->setModel(model);
+    for(int i=0; i<game->GetMarket()->GetOffersList().size(); i++)
+    {
+        QStandardItem *item;
+            item = new QStandardItem();
+            QString offerDetails = game->GetMines().at(i)->GetName();
+            offerDetails.append("   ");
+            offerDetails.append(QString::number(game->GetMarket()->GetOffersList().at(i)->GetCoalA()->GetAmount()));
+            offerDetails.append("/");
+            offerDetails.append(QString::number(game->GetMarket()->GetOffersList().at(i)->GetCoalA()->GetPrice()));
+            offerDetails.append("$  &  ");
+            offerDetails.append(QString::number(game->GetMarket()->GetOffersList().at(i)->GetCoalB()->GetAmount()));
+            offerDetails.append("/");
+            offerDetails.append(QString::number(game->GetMarket()->GetOffersList().at(i)->GetCoalB()->GetPrice()));
+            offerDetails.append("$");
+            item->setText(offerDetails);
+            item->setEditable( false );
+            model->appendRow( item );
+    }
 
+    /*! wypełnienie podsumowania sprzedaży*/
 
-    //update general information
-    this->ui->budgetDisplayLabel->setText(QString::number(this->game->GetPlayer()->GetMine()->GetBudget()));
+    this->ui->coalAAveragePrice->setText(QString::number(this->game->GetMarket()->GetStats()->GetCoalA()->GetPrice()));
+    this->ui->coalBAveragePrice->setText(QString::number(this->game->GetMarket()->GetStats()->GetCoalB()->GetPrice()));
+    this->ui->coalASoldAmount->setText(QString::number(this->game->GetMarket()->GetStats()->GetCoalA()->GetAmount()));
+    this->ui->coalBSoldAmount->setText(QString::number(this->game->GetMarket()->GetStats()->GetCoalB()->GetAmount()));
+
+    /*! \brief odświeżanie ogólnych informacji
+     *
+     */
+
+    this->ui->budgetDisplayLabel->setText(QString::number(this->game->GetPlayer()->GetMine()->GetBudget()/1000000)+"M");
     this->ui->scoreDisplayLabel->setText(QString::number(this->game->GetPlayer()->GetScore()));
     this->ui->salarySlider->setValue(this->game->GetPlayer()->GetMine()->GetCurrentSalary());
+
+
+    this->ui->dateDisplay->display(this->game->GetDate());
+    this->ui->completeBar->setValue(this->game->Completed());
+    this->ui->monthLabel->setText(QString::number(this->game->GetDate()%12+1));
 
     this->ui->windowPages->setCurrentWidget(this->ui->gamePage);
 }
@@ -155,6 +228,8 @@ void MainWindow::on_coalExtractionSlider_valueChanged(int value)
                                                                   (this->game->GetPlayer()->GetMine()->CalculateExtraction(this->coalB))
                                                                   ));
 
+    this->ui->coalASaleAmountLabel->setText(QString::number(this->ui->coalAExtractionAmountLabel->text().toDouble()*this->ui->coalASaleAmountBar->value()/100));
+    this->ui->coalBSaleAmountLabel->setText(QString::number(this->ui->coalBExtractionAmountLabel->text().toDouble()*this->ui->coalBSaleAmountBar->value()/100));
 }
 
 void MainWindow::on_upgradeStorehouseButton_clicked()
@@ -170,4 +245,21 @@ void MainWindow::on_upgradeStorehouseButton_clicked()
         this->ui->coalBStorageUpgrade->setChecked(false);
     }
     this->ui->budgetDisplayLabel->setText(QString::number(this->game->GetPlayer()->GetMine()->GetBudget()));
+    refreshContent();
+}
+
+void MainWindow::on_coalASaleAmountBar_valueChanged(int value)
+{
+    this->ui->coalASaleAmountLabel->setText(QString::number(this->ui->coalAExtractionAmountLabel->text().toDouble()*value/100));
+}
+
+void MainWindow::on_coalBSaleAmountBar_valueChanged(int value)
+{
+    this->ui->coalBSaleAmountLabel->setText(QString::number(this->ui->coalBExtractionAmountLabel->text().toDouble()*value/100));
+}
+
+void MainWindow::on_hireWorkerButton_clicked()
+{
+    this->game->GetPlayer()->HireMiner();
+    refreshContent();
 }

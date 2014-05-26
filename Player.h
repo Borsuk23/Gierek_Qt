@@ -18,8 +18,8 @@ public:
     void SetExtraction(CoalTypeA *_coalA, CoalTypeB *_coalB);
     void SetSell(CoalTypeA *_coalA, CoalTypeB *_coalB);
     void SetSalary(double _salary);
-    bool HireMiner();
-    bool NoticeMiner();
+    void HireMiner();
+    void NoticeMiner();
 
 };
 
