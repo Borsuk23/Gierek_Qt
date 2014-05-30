@@ -16,8 +16,8 @@ public:
     Market();
     QList<Order*> GetOrdersList();
     QList<Order*> GetOffersList();
-    void AddOrder(Order *_order);
-    void AddOffer(Order *_offer);
+    void AddOrder(Order *_order = new Order());
+    void AddOffer(Order *_offer = new Order());
     Order* AccomplishTransaction(Order *offer);
     Order* GetStats();
 };

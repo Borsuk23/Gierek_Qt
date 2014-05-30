@@ -957,7 +957,6 @@
     </property>
     <addaction name="actionNew_game"/>
     <addaction name="separator"/>
-    <addaction name="actionStatistics"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>

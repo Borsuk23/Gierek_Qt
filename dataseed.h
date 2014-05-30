@@ -1,15 +1,15 @@
 #ifndef DATASEED_H
 #define DATASEED_H
 #include "CommonIncludes.h"
+#include <QFile>
+#include <QTextStream>
 
 class DataSeed
 {
 public:
-    DataSeed();
-    QList<QString> ReadPlayersList();
-    bool AddPlayer(QString _name);
-    QString ReadPlayerStats(QString _name);
-    bool UpdatePlayerStats(QString _name, bool _won, double _score);
+    static QList<QString> ReadPlayersList();
+    static bool AddPlayer(QString _name);
+    static double random(double _base, int _difference);
 };
 
 #endif // DATASEED_H

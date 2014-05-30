@@ -1,24 +1,3 @@
-<List name="Player">
-	<Player>
-		Sony
-	</Player>
-	<Player>
-		Testowy
-	</Player>
-	<Player>
-		Gregory
-	</Player>
-</List>
-
-<List name="Stats">
-	<Stats player="Sony">
-		<Played value="20"/>
-		<Won value="10"/>
-		<BestScore value="100000"/>
-	</Stats>
-	<Stats player="Testowy">
-		<Played value="1"/>
-		<Won value="0"/>
-		<BestScore value="20000"/>
-	</Stats>
-</List>
+<Player>Sony</Player>
+<Player>Testowy</Player>
+<Player>Gregory</Player>

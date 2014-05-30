@@ -180,23 +180,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QComboBox" name="playerComboBox">
-      <item>
-       <property name="text">
-        <string>&lt;&lt;Choose player&gt;&gt;</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Sony</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>&lt;&lt;Create new player&gt;&gt;</string>
-       </property>
-      </item>
-     </widget>
+     <widget class="QComboBox" name="playerComboBox"/>
     </item>
    </layout>
   </widget>

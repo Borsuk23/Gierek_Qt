@@ -8,6 +8,14 @@ NewGame::NewGame(QWidget *parent) :
     ui(new Ui::NewGame)
 {
     ui->setupUi(this);
+    this->players=DataSeed::ReadPlayersList();
+    this->ui->playerComboBox->addItem("<<Choose player>>");
+    for(int i=0; i<this->players.size(); i++)
+    {
+        this->ui->playerComboBox->addItem(players.at(i));
+    }
+    this->ui->playerComboBox->addItem("<<Create new player>>");
+    this->ui->playerComboBox->setCurrentIndex(1);
 }
 
 

@@ -24,6 +24,7 @@ private slots:
 
 private:
     Ui::NewGame *ui;
+    QList<QString> players;
 
 };
 

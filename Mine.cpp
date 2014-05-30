@@ -7,7 +7,7 @@
 Mine::Mine()
 {
     this->name="Moja kopalnia";
-    this->salary=1000;
+    this->salary=5000;
     this->budget=1000000;
     this->storage= new Storehouse();
     this->extractCoalA = new CoalTypeA();
@@ -253,6 +253,10 @@ bool Mine::PlayTurn(Market *_market)
 
     //przelew zysków
     this->budget+=earned;
+    for(int i=0; i<this->miners.size();i++)
+    {
+        miners.at(i)->MoraleUpdate(this->salary);
+    }
 
 
     if(PaySalary()&&PayStorageCost())
