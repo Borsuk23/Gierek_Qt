@@ -64,4 +64,5 @@ RESOURCES += \
     resources.qrc
 
 OTHER_FILES += \
-    1044.jpg
+    1044.jpg \
+    gierekPlayersLog.xml
