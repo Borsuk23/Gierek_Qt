@@ -21,6 +21,8 @@ MainWindow::MainWindow(QWidget *parent, Game *_game) :
     this->game=_game;
     ui->setupUi(this);
     this->ui->windowPages->setCurrentWidget(this->ui->blankPage);
+    this->ui->coalAPriceInput->setValidator(new QDoubleValidator(0,10000,2));
+    this->ui->coalBPriceInput->setValidator(new QDoubleValidator(0,10000,2));
 }
 
 MainWindow::~MainWindow()
@@ -50,18 +52,7 @@ void MainWindow::on_actionNew_game_triggered()
 
 void MainWindow::on_actionExit_triggered()
 {
-    QMessageBox *msg=new QMessageBox();
-    if(this->game!=NULL)
-    {
-        msg->setText(this->game->GetPlayer()->GetName());
-        msg->show();
-        delete this->game;
-    }
-    else
-    {
-        msg->setText("pusto");
-        msg->show();
-    }
+    delete this->game;
 }
 
 void MainWindow::on_actionAbout_triggered()
@@ -72,14 +63,22 @@ void MainWindow::on_actionAbout_triggered()
 
 void MainWindow::on_playTurnButton_clicked()
 {
-    this->game->PlayTurn(this->ui->salaryLabel->text().toDouble(),
+    if(!this->game->PlayTurn(this->ui->salaryLabel->text().toDouble(),
                          new CoalTypeA(this->ui->coalAExtractionAmountLabel->text().toDouble(),0),
                          new CoalTypeB(this->ui->coalBExtractionAmountLabel->text().toDouble(),0),
                          new CoalTypeA(this->ui->coalASaleAmountLabel->text().toDouble(),this->ui->coalAPriceInput->text().toDouble()),
-                         new CoalTypeB(this->ui->coalBSaleAmountLabel->text().toDouble(),this->ui->coalBPriceInput->text().toDouble()));
-    this->refreshContent();
-    if(this->game->EndGame())
-        showStartPage();
+                         new CoalTypeB(this->ui->coalBSaleAmountLabel->text().toDouble(),this->ui->coalBPriceInput->text().toDouble())))
+    {
+        this->ui->windowPages->setCurrentWidget(this->ui->blankPage);
+        QMessageBox *msg = new QMessageBox();
+        msg->about(this,"KONIEC","Przegrałeś! \nTwój wynik: "+QString::number(this->game->GetPlayer()->GetScore()));
+
+    }else
+    {
+        this->refreshContent();
+        if(this->game->EndGame())
+            showStartPage();
+    }
 }
 
 void MainWindow::refreshContent()
@@ -98,8 +97,8 @@ void MainWindow::refreshContent()
                                                                   ));
 
     //coal sale
-    this->ui->coalASaleAmountLabel->setText(QString::number((double)(this->ui->coalASaleAmountBar->value()*this->ui->coalAExtractionAmountLabel->text().toDouble()/100)));
-    this->ui->coalBSaleAmountLabel->setText(QString::number((double)(this->ui->coalBSaleAmountBar->value()*this->ui->coalBExtractionAmountLabel->text().toDouble()/100)));
+    this->ui->coalASaleAmountLabel->setText(QString::number((double)(this->ui->coalASaleAmountBar->value()*(this->ui->coalAExtractionAmountLabel->text().toDouble()+this->game->GetPlayer()->GetMine()->GetStorehouse()->GetStoredCoal(this->coalA))/100)));
+    this->ui->coalBSaleAmountLabel->setText(QString::number((double)(this->ui->coalBSaleAmountBar->value()*(this->ui->coalBExtractionAmountLabel->text().toDouble()+this->game->GetPlayer()->GetMine()->GetStorehouse()->GetStoredCoal(this->coalB))/100)));
 
     //storehouse
 
@@ -223,13 +222,12 @@ void MainWindow::on_coalExtractionSlider_valueChanged(int value)
                                                                   (this->game->GetPlayer()->GetMine()->CalculateExtraction(this->coalA))
                                                                   ));
 
-            //(QString::number((this->game->GetPlayer()->GetMine()->CalculateExtraction(this->game->GetPlayer()->GetMine()->extractCoalA)*(1-(this->ui->coalExtractionSlider->maximum()-value)/this->ui->coalExtractionSlider->maximum())))); //extraction *1-coalB%
     this->ui->coalBExtractionAmountLabel->setText(QString::number((double)(value)/(this->ui->coalExtractionSlider->maximum())*
                                                                   (this->game->GetPlayer()->GetMine()->CalculateExtraction(this->coalB))
                                                                   ));
 
-    this->ui->coalASaleAmountLabel->setText(QString::number(this->ui->coalAExtractionAmountLabel->text().toDouble()*this->ui->coalASaleAmountBar->value()/100));
-    this->ui->coalBSaleAmountLabel->setText(QString::number(this->ui->coalBExtractionAmountLabel->text().toDouble()*this->ui->coalBSaleAmountBar->value()/100));
+     this->ui->coalASaleAmountLabel->setText(QString::number((double)(this->ui->coalASaleAmountBar->value()*(this->ui->coalAExtractionAmountLabel->text().toDouble()+this->game->GetPlayer()->GetMine()->GetStorehouse()->GetStoredCoal(this->coalA))/100)));
+     this->ui->coalBSaleAmountLabel->setText(QString::number((double)(this->ui->coalBSaleAmountBar->value()*(this->ui->coalBExtractionAmountLabel->text().toDouble()+this->game->GetPlayer()->GetMine()->GetStorehouse()->GetStoredCoal(this->coalB))/100)));
 }
 
 void MainWindow::on_upgradeStorehouseButton_clicked()
@@ -250,16 +248,44 @@ void MainWindow::on_upgradeStorehouseButton_clicked()
 
 void MainWindow::on_coalASaleAmountBar_valueChanged(int value)
 {
-    this->ui->coalASaleAmountLabel->setText(QString::number(this->ui->coalAExtractionAmountLabel->text().toDouble()*value/100));
+    this->ui->coalASaleAmountLabel->setText(QString::number((double)(this->ui->coalASaleAmountBar->value()*(this->ui->coalAExtractionAmountLabel->text().toDouble()+this->game->GetPlayer()->GetMine()->GetStorehouse()->GetStoredCoal(this->coalA))/100)));
+
 }
 
 void MainWindow::on_coalBSaleAmountBar_valueChanged(int value)
 {
-    this->ui->coalBSaleAmountLabel->setText(QString::number(this->ui->coalBExtractionAmountLabel->text().toDouble()*value/100));
+    this->ui->coalBSaleAmountLabel->setText(QString::number((double)(this->ui->coalBSaleAmountBar->value()*(this->ui->coalBExtractionAmountLabel->text().toDouble()+this->game->GetPlayer()->GetMine()->GetStorehouse()->GetStoredCoal(this->coalB))/100)));
+
 }
 
 void MainWindow::on_hireWorkerButton_clicked()
 {
     this->game->GetPlayer()->HireMiner();
     refreshContent();
+}
+
+void MainWindow::on_noticeWorkerButton_clicked()
+{
+    this->game->GetPlayer()->NoticeMiner();
+    refreshContent();
+}
+
+void MainWindow::on_coalAStorageUpgrade_stateChanged(int arg1)
+{
+    double value=0;
+    if(this->ui->coalAStorageUpgrade->isChecked()==true)
+        value+=100000;
+    if(this->ui->coalBStorageUpgrade->isChecked()==true)
+        value+=100000;
+    this->ui->upgradeCostLabel->setText(QString::number(value));
+}
+
+void MainWindow::on_coalBStorageUpgrade_stateChanged(int arg1)
+{
+    double value=0;
+    if(this->ui->coalAStorageUpgrade->isChecked()==true)
+        value+=100000;
+    if(this->ui->coalBStorageUpgrade->isChecked()==true)
+        value+=100000;
+    this->ui->upgradeCostLabel->setText(QString::number(value));
 }

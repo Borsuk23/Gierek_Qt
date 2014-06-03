@@ -12,6 +12,25 @@ Storehouse::Storehouse()
 
 Storehouse::Storehouse(int _difficulty)
 {
+    if(_difficulty==1){
+        this->coalA = new CoalTypeA(10000,0);
+        this->coalB = new CoalTypeB(5000,0);
+        this->storageA = new CoalTypeA(50000, 0);
+        this->storageB = new CoalTypeB(30000, 0);
+        this->cost = 0.5;
+    }else if(_difficulty==2){
+        this->coalA = new CoalTypeA(4000,0);
+        this->coalB = new CoalTypeB(2000,0);
+        this->storageA = new CoalTypeA(40000, 0);
+        this->storageB = new CoalTypeB(20000, 0);
+        this->cost = 1;
+    }else if(_difficulty==3){
+        this->coalA = new CoalTypeA(0,0);
+        this->coalB = new CoalTypeB(0,0);
+        this->storageA = new CoalTypeA(30000, 0);
+        this->storageB = new CoalTypeB(10000, 0);
+        this->cost = 1.5;
+    }
 
 }
 
@@ -105,10 +124,10 @@ double Storehouse::GetStorageCost()
  */
 double Storehouse::ExtendStorage(CoalTypeA const *_coalA, double _budget)
 {
-    if (_budget > 10000)
+    if (_budget > 100000)
     {
-        _budget -= 10000;
-        storageA->Add(10000);
+        _budget -= 100000;
+        storageA->Add(100000);
         return _budget;
     }
     else
@@ -123,10 +142,10 @@ double Storehouse::ExtendStorage(CoalTypeA const *_coalA, double _budget)
  */
 double Storehouse::ExtendStorage(CoalTypeB const *_coalB, double _budget)
 {
-    if (_budget > 10000)
+    if (_budget > 100000)
     {
-        _budget -= 10000;
-        storageB->Add(10000);
+        _budget -= 100000;
+        storageB->Add(100000);
         return _budget;
     }
     else

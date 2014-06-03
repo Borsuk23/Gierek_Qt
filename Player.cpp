@@ -11,7 +11,7 @@ Player::Player(QString _name, int _difficulty)
 {
     this->name=_name;
     this->score=0;
-    this->mine = new Mine();
+    this->mine = new Mine(_difficulty);
 }
 
 Mine* Player::GetMine()
@@ -27,7 +27,7 @@ QString Player::GetName()
 
 double Player::GetScore()
 {
-    return 100;
+    return this->score;
 }
 
 void Player::SetExtraction(CoalTypeA *_coalA, CoalTypeB *_coalB)
@@ -54,7 +54,14 @@ void Player::HireMiner()
 
 void Player::NoticeMiner()
 {
-    this->mine->GetMiners().pop_back();
+    this->mine->NoticeWorker();
 }
 
+void Player::AddPoint(double _points)
+{
+    if(_points>0)
+    {
+        this->score+=_points;
+    }
+}
 

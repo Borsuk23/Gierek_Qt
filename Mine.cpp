@@ -23,7 +23,7 @@ Mine::Mine()
 Mine::Mine(int _difficulty)
 {
     this->name="Moja kopalnia";
-    this->salary=1000;
+    this->salary=5000;
     this->budget=1000000+(2-_difficulty)*250000;
     this->storage= new Storehouse(_difficulty);
     this->extractCoalA = new CoalTypeA();
@@ -151,6 +151,10 @@ void Mine::HireWorker()
 
     this->miners.append(new Miner(names.at(rand()%names.size())));
 }
+void Mine::NoticeWorker()
+{
+    this->miners.removeLast();
+}
 
 void Mine::MineCoal(CoalTypeA *_coalA, CoalTypeB *_coalB)
 {
@@ -192,17 +196,13 @@ bool Mine::PayStorageCost()
         return true;
 }
 
-/*!
- * \brief Mine::PlayTurn funkcja odpowiadająca za comiesięczną pracę kopalni wg ustaleń gracza
- * \param _market przyjmuje rynek z którym współpracuje
- * \return czy udało się pomyślnie rozegrać miesiąc
- */
-bool Mine::PlayTurn(Market *_market)
+double Mine::PlayTurn(Market *_market)
 {
     CoalTypeA *coalA = new CoalTypeA();
     CoalTypeB *coalB = new CoalTypeB();
     Order *coal= new Order();
 
+    double points=0;
     double earned=0;
 
     coal->GetCoalA()->SetPrice(this->sellCoalA->GetPrice());
@@ -224,7 +224,7 @@ bool Mine::PlayTurn(Market *_market)
     }
     if(coalB->GetAmount()<this->sellCoalB->GetAmount())
     {
-        coalB->Add(this->storage->TakeCoal(new CoalTypeA(this->sellCoalB->GetAmount()-coalB->GetAmount(),0))->GetAmount());
+        coalB->Add(this->storage->TakeCoal(new CoalTypeB(this->sellCoalB->GetAmount()-coalB->GetAmount(),0))->GetAmount());
         coal->GetCoalB()->Add(coalB->Substract(coalB->GetAmount()));
     }
     else
@@ -237,17 +237,22 @@ bool Mine::PlayTurn(Market *_market)
     earned+=coal->GetCoalA()->GetAmount()*coal->GetCoalA()->GetPrice();
     earned+=coal->GetCoalB()->GetAmount()*coal->GetCoalB()->GetPrice();
 
+    points+=coal->GetCoalA()->GetAmount()*coal->GetCoalA()->GetPrice()/1000;
+    points+=coal->GetCoalB()->GetAmount()*coal->GetCoalB()->GetPrice()/1000;
+
     coal=_market->AccomplishTransaction(coal);
 
     //korekta zarobków i magazynowanie nadwyżek
     if(coal->GetCoalA()->GetAmount()>0)
     {
         earned-=coal->GetCoalA()->GetAmount()*coal->GetCoalA()->GetPrice();
+        points-=coal->GetCoalA()->GetAmount()*coal->GetCoalA()->GetPrice()/1000;
         this->storage->StoreCoal(coal->GetCoalA());
     }
     if(coal->GetCoalB()->GetAmount()>0)
     {
         earned-=coal->GetCoalB()->GetAmount()*coal->GetCoalB()->GetPrice();
+        points-=coal->GetCoalB()->GetAmount()*coal->GetCoalB()->GetPrice()/1000;
         this->storage->StoreCoal(coal->GetCoalB());
     }
 
@@ -257,7 +262,6 @@ bool Mine::PlayTurn(Market *_market)
     {
         miners.at(i)->MoraleUpdate(this->salary);
     }
-
 
     if(PaySalary()&&PayStorageCost())
     {/*
@@ -269,7 +273,7 @@ bool Mine::PlayTurn(Market *_market)
         delete coalA;
         delete coalB;
         delete coal;
-        return true;
+        return points;
     }
     //wyswietlic komunikat z tura!
     else
@@ -277,7 +281,7 @@ bool Mine::PlayTurn(Market *_market)
         delete coalA;
         delete coalB;
         delete coal;
-        return false;
+        return points;
     }
 
 }

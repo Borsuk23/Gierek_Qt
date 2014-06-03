@@ -48,6 +48,12 @@ private slots:
 
     void on_hireWorkerButton_clicked();
 
+    void on_noticeWorkerButton_clicked();
+
+    void on_coalAStorageUpgrade_stateChanged(int arg1);
+
+    void on_coalBStorageUpgrade_stateChanged(int arg1);
+
 private:
     CoalTypeA *coalA=NULL;
     CoalTypeB *coalB=NULL;

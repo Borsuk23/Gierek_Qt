@@ -13,7 +13,7 @@ Game::Game(int _difficulty, int _lenght, QString _name)
     this->gameDifficulty = _difficulty;
     this->gameLenght = _lenght;
     this->numberOfMines = _difficulty * 10;
-    this->player = new Player(_name);
+    this->player = new Player(_name, _difficulty);
 
     for(int i=0; i<numberOfMines; i++)
     {
@@ -51,7 +51,7 @@ Game::Game(int _difficulty, int _lenght, QString _name)
 
 bool Game::PlayTurn(double _salary, CoalTypeA *_extractCoalA, CoalTypeB *_extractCoalB,CoalTypeA *_saleCoalA,CoalTypeB *_saleCoalB)
 {
-    //referesh Market
+    //refresh Market
     delete this->market;
     this->market=new Market();
     for(int i =0; i<this->mines.size(); i++)
@@ -67,8 +67,12 @@ bool Game::PlayTurn(double _salary, CoalTypeA *_extractCoalA, CoalTypeB *_extrac
     this->GetPlayer()->SetSalary(_salary);
     this->GetPlayer()->SetExtraction(_extractCoalA, _extractCoalB);
     this->GetPlayer()->SetSell(_saleCoalA, _saleCoalB);
-    this->GetPlayer()->GetMine()->PlayTurn(this->market);
+    this->GetPlayer()->AddPoint(this->GetPlayer()->GetMine()->PlayTurn(this->market));
 
+    if(this->GetPlayer()->GetMine()->GetBudget()<=0)
+    {
+        return false;
+    }
     this->date++;
     return true;
 }
@@ -78,7 +82,7 @@ bool Game::EndGame()
     if(this->date>=this->gameLenght)
     {
         QMessageBox *gameEnd = new QMessageBox();
-        gameEnd->about(0,"KONIEC", "wygrales");
+        gameEnd->about(0,"KONIEC", "Wygraleś! \nTwój wynik:"+QString::number(this->GetPlayer()->GetScore()));
         return true;
     }
     else

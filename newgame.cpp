@@ -45,6 +45,10 @@ void NewGame::on_buttonBox_accepted()
         {
             this->game= new Game(3,ui->lenghtComboBox->currentText().toInt(),ui->playerComboBox->currentText());
         }
+        else
+        {
+            this->game= new Game(1,ui->lenghtComboBox->currentText().toInt(),ui->playerComboBox->currentText());
+        }
         this->accept();
     }
 

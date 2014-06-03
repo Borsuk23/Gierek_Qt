@@ -30,6 +30,8 @@ void Miner::MineCoal(CoalTypeA *_coal)
 	if (!Strike())
 	{
         _coal->Add((1 + experience * 0.04) * 10);
+        if(this->experience<1000)
+            this->experience+=1;
 	}
 }
 
@@ -38,6 +40,8 @@ void Miner::MineCoal(CoalTypeB *_coal)
 	if (!Strike())
 	{
         _coal->Add((1 + experience * 0.03) * 8);
+        if(this->experience<1000)
+            this->experience+=1;
 	}
 }
 
