@@ -7,7 +7,9 @@
 namespace Ui {
 class MainWindow;
 }
-
+/*!
+ * \brief The MainWindow class główne okno gry
+ */
 class MainWindow : public QMainWindow
 {
     Q_OBJECT

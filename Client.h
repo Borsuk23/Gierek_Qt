@@ -4,7 +4,7 @@
 #include "CommonIncludes.h"
 #include "Order.h"
 /*!
- * \brief The Client class - nadrzędna klasa dostarczająca interfejs dla różnych typów klientów (polimorfizm)
+ * \brief The Client class nadrzędna klasa dostarczająca interfejs dla różnych typów klientów (polimorfizm)
  */
 class Client
 {

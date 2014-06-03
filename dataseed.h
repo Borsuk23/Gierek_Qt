@@ -3,7 +3,9 @@
 #include "CommonIncludes.h"
 #include <QFile>
 #include <QTextStream>
-
+/*!
+ * \brief The DataSeed class klasa zapewniająca statyczne metody do odczytu danych
+ */
 class DataSeed
 {
 public:

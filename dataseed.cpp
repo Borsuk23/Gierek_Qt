@@ -21,35 +21,8 @@ QList<QString> DataSeed::ReadPlayersList()
        }
        inputFile.close();
     }
-    /*
-    QList<QString> players;
-    std::ifstream inStreamFile;
-    inStreamFile.open("gierekPlayersLog.xml");
-    if(!inStreamFile.good())
-        return players;
-
-    std::string temp="";
-    QString subTemp;
-    while(!inStreamFile.eof())
-    {
-        std::getline(inStreamFile, temp);
-        subTemp.fromStdString(temp.c_str());
-        if(subTemp.indexOf("<Player>")!=-1 && subTemp.indexOf("</Player>")!=-1)
-        {
-            subTemp.remove("<Player>");
-            subTemp.remove("</Player>");
-            players.append(subTemp);
-        }
-    }
-    inStreamFile.close();
-    */
 
  return players;
-}
-
-bool DataSeed::AddPlayer(QString _name)
-{
-
 }
 
 double DataSeed::random(double _base, int _difference)

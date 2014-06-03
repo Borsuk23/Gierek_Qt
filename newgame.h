@@ -7,7 +7,9 @@
 namespace Ui {
 class NewGame;
 }
-
+/*!
+ * \brief The NewGame class okno kreatora nowej gry
+ */
 class NewGame : public QDialog
 {
     Q_OBJECT
